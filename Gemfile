@@ -21,6 +21,12 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'devise'
+gem 'declarative_authorization'
+gem 'haml-rails'
+gem 'rabl'
+gem 'hpricot'
+gem 'ruby_parser'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
