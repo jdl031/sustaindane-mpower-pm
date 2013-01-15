@@ -11,12 +11,48 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113225308) do
+ActiveRecord::Schema.define(:version => 20130115030651) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.string   "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "comments", ["task_id"], :name => "index_comments_on_task_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "projects", :force => true do |t|
+    t.integer  "company_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "projects", ["company_id"], :name => "index_projects_on_company_id"
+
+  create_table "tasks", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "creator_id"
+    t.integer  "owner_id"
+    t.string   "title"
+    t.string   "description"
+    t.datetime "due"
+    t.string   "status"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "tasks", ["creator_id"], :name => "index_tasks_on_creator_id"
+  add_index "tasks", ["owner_id"], :name => "index_tasks_on_owner_id"
+  add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"
 
 end

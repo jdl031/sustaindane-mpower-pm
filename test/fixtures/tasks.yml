@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  project: 
+  creator: 
+  owner: 
+  title: MyString
+  description: MyString
+  due: 2013-01-14 21:06:13
+  status: MyString
+
+two:
+  project: 
+  creator: 
+  owner: 
+  title: MyString
+  description: MyString
+  due: 2013-01-14 21:06:13
+  status: MyString

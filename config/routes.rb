@@ -1,4 +1,13 @@
 SustaindaneMpowerPm::Application.routes.draw do
+  resources :comments
+
+
+  resources :tasks
+
+
+  resources :projects
+
+
   resources :companies
 
 
