@@ -1,3 +1,8 @@
+%h1
+  = link_to @project.company.name, @project.company
+  >
+  = link_to @project.name, @project
+
 %p#notice= notice
 
 %p
@@ -6,6 +11,12 @@
 %p
   %b Name:
   = @project.name
+  %br
+  - @project.tasks.each do |task|
+    %tr
+      %td= link_to 'Edit', edit_task_path(task)
+      %td= link_to 'Delete', task, :method => :delete 
+      %td= link_to task.title, task
 
 = link_to 'Edit', edit_project_path(@project)
 \|

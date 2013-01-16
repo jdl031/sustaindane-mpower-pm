@@ -1,3 +1,12 @@
+%h1
+  = link_to @comment.task.project.company.name, @comment.task.project.company
+  >
+  = link_to @comment.task.project.name, @comment.task.project
+  >
+  = link_to @comment.task.title, @comment.task
+  >
+  = link_to @comment.comment, @comment
+
 %p#notice= notice
 
 %p
