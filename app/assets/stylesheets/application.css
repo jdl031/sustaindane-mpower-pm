@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+body {
+	background-image: url("/assets/landscape.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: top center;
+	font-family: arial,helvetica,sans-serif;
+	color: #53aacf;
+}
