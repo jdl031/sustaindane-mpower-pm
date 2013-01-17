@@ -7,18 +7,16 @@
 
 %table
   %tr
-    %th Tasks
-    %th
-    %th
+    %th Task
+    %th Creator
+    %th Owner
+    %th= link_to 'Edit', edit_project_path(@project)
     %th= link_to 'New', new_task_path(:project_id => @project.id)
   - @project.tasks.each do |task|
     %tr
+      %td= link_to task.title, task
       %td= task.creator.email
       %td= task.owner.email
-      %td= link_to task.title, task
       %td= link_to 'Edit', edit_task_path(task)
       %td= link_to 'Delete', task, :method => :delete 
 
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path

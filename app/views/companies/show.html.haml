@@ -5,14 +5,11 @@
 
 %table
   %tr
-    %th Projects
+    %th Project
+    %th= link_to 'Edit', edit_company_path(@company)
     %th= link_to 'New', new_project_path(:company_id => @company.id)
   - @company.projects.each do |project|
     %tr
       %td= link_to project.name, project
       %td= link_to 'Edit', edit_project_path(project)
       %td= link_to 'Delete', project, :method => :delete 
-
-= link_to 'Edit', edit_company_path(@company)
-\|
-= link_to 'Back', companies_path
