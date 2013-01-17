@@ -5,18 +5,18 @@
 
 %p#notice= notice
 
-%p
-  %b Company:
-  = @project.company
-%p
-  %b Name:
-  = @project.name
-  %br
+%table
+  %tr
+    %th Tasks
+    %th
+    %th= link_to 'New', new_task_path(:project_id => @project.id)
   - @project.tasks.each do |task|
     %tr
+      %td= task.creator.email
+      %td= task.owner.email
+      %td= link_to task.title, task
       %td= link_to 'Edit', edit_task_path(task)
       %td= link_to 'Delete', task, :method => :delete 
-      %td= link_to task.title, task
 
 = link_to 'Edit', edit_project_path(@project)
 \|
