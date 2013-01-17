@@ -9,6 +9,7 @@
   %tr
     %th Tasks
     %th
+    %th
     %th= link_to 'New', new_task_path(:project_id => @project.id)
   - @project.tasks.each do |task|
     %tr
