@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  filter_resource_access
+
   # GET /tasks
   # GET /tasks.json
   def index

@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  filter_resource_access
+
   # GET /projects
   # GET /projects.json
   def index

@@ -1,8 +1,10 @@
 class CompaniesController < ApplicationController
+  filter_resource_access :attribute_check => true
+
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = Company.with_permissions_to(:read)
 
     respond_to do |format|
       format.html # index.html.erb

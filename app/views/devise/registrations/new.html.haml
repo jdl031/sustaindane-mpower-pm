@@ -13,5 +13,9 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation
+  %div
+    = f.label :company
+    %br/
+    = f.collection_select :company_id, Company.all, :id, :name
   %div= f.submit "Sign up"
 = render "devise/shared/links"

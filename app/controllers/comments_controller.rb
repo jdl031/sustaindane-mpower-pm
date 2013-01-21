@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  filter_resource_access
+
   # GET /comments
   # GET /comments.json
   def index
