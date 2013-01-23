@@ -5,17 +5,27 @@
     = f.label :email
     %br/
     = f.email_field :email
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %div
-    = f.label :company
-    %br/
-    = f.collection_select :company_id, Company.all, :id, :name
+  /%div
+  /  = f.label :password
+  /  %br/
+  /  = f.password_field :password
+  /%div
+  /  = f.label :password_confirmation
+  /  %br/
+  /  = f.password_field :password_confirmation
+  - if current_user.role.name == 'admin'
+    %div
+      = f.label :role
+      %br/
+      = f.collection_select :role_id, Role.all, :id, :name, {:selected => Role.find_by_name('user').id.to_i}
+    %div
+      = f.label :company
+      %br/
+      = f.collection_select :company_id, Company.all, :id, :name
+  - if current_user.role.name == 'company_admin'
+    %div
+      = f.label :role
+      %br/
+      = f.collection_select :role_id, Role.where("name != 'admin'"), :id, :name, {:selected => Role.find_by_name('user').id.to_i}
   %div= f.submit "Sign up"
 = render "devise/shared/links"

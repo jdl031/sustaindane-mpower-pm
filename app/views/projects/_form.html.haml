@@ -11,5 +11,8 @@
   .field
     = f.label :name
     = f.text_field :name
+  .field
+    = f.label :goal_date
+    = f.datetime_select :goal_date
   .actions
     = f.submit 'Save'
