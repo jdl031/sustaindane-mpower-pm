@@ -1,9 +1,9 @@
 authorization do
 	role :admin do
-		has_permission_on :companies, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy]
-		has_permission_on :projects, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy]
-		has_permission_on :tasks, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy]
-		has_permission_on :comments, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy]
+		has_permission_on :companies, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
+		has_permission_on :projects, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
+		has_permission_on :tasks, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
+		has_permission_on :comments, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
 		has_permission_on :registrations, :to => [:new, :create]
 	end
 

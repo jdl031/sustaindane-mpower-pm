@@ -5,6 +5,6 @@ class Project < ActiveRecord::Base
   has_many :tasks
 
   def completion
-  	tasks.where(:status => 'complete').length.to_f / tasks.length
+  	tasks.where(:complete => true).length.to_f / tasks.length
   end
 end
