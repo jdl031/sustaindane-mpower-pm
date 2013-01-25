@@ -3,12 +3,12 @@
 %table
   %tr
     %th Project
-    %th Creator
-    %th Owner
     %th Title
     %th Description
-    %th Due
     %th Complete
+    %th Due
+    %th Creator
+    %th Owner
     %th
     %th
     %th
@@ -16,12 +16,12 @@
   - @tasks.each do |task|
     %tr
       %td= task.project.name
-      %td= task.creator.email
-      %td= task.owner.email
       %td= task.title
       %td= task.description
-      %td= task.due
       %td= task.complete
+      %td= task.due
+      %td= task.creator.email
+      %td= task.owner.email
       %td= link_to 'Show', task
       %td= link_to 'Edit', edit_task_path(task)
       %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }
