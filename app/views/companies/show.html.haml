@@ -9,7 +9,8 @@
     %th Completion
     %th Goal Date
     %th= link_to 'Edit', edit_company_path(@company)
-    %th= link_to 'New', new_project_path(:company_id => @company.id)
+    - if current_user.role.name == 'admin'
+      %th= link_to 'New', new_project_path(:company_id => @company.id)
   - @company.projects.each do |project|
     %tr
       %td= link_to project.name, project
