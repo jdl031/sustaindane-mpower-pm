@@ -24,5 +24,8 @@
   .field
     = f.label :complete
     = f.check_box :complete
+  .field
+    = f.label :owner
+    = f.collection_select :owner_id, User.where('company_id = ?', @task.project.company_id), :id, :email
   .actions
     = f.submit 'Save'
