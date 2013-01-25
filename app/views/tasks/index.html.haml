@@ -15,9 +15,9 @@
 
   - @tasks.each do |task|
     %tr
-      %td= task.project
-      %td= task.creator
-      %td= task.owner
+      %td= task.project.name
+      %td= task.creator.email
+      %td= task.owner.email
       %td= task.title
       %td= task.description
       %td= task.due
