@@ -26,7 +26,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    @task = Task.new :project_id => params[:project_id], :creator_id => current_user.id, :owner_id => current_user.id, :status => 'incomplete'
+    @task = Task.new :project_id => params[:project_id], :creator_id => current_user.id, :owner_id => current_user.id, :complete => false
 
     respond_to do |format|
       format.html # new.html.erb
