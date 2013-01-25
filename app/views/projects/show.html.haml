@@ -9,7 +9,7 @@
   %tr
     %th Task
     %th Description
-    %th Status
+    %th Complete
     %th Date Due
     %th Creator
     %th Owner
@@ -19,7 +19,7 @@
     %tr
       %td= link_to task.title, task
       %td= task.description
-      %td= task.status
+      %td= task.complete
       %td= task.due
       %td= task.creator.email
       %td= task.owner.email
