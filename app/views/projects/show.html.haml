@@ -1,13 +1,8 @@
-%h1= link_to @project.company.name, @project.company
-
 %p#notice= notice
-%br
+
+= link_to @project.company.name, @project.company
 
 %table
-  %tr
-    %th Project
-    %th Completion
-    %th Goal Date
   %tr
     %td= link_to @project.name, @project
     %td= @project.completion
@@ -16,16 +11,8 @@
       %td= link_to 'Edit', edit_project_path(@project)
     - if permitted_to? :destroy, :projects
       %td= link_to 'Delete', @project, :method => :delete 
-%br
-%br
+
 %table
-  %tr
-    %th Complete
-    %th Task
-    %th Description
-    %th Date Due
-    %th Creator
-    %th Owner
   - @project.tasks.order('complete asc, date(due) asc').each do |task|
     %tr
       %td= check_box_tag :complete, 1, task.complete, :disabled => true
@@ -38,4 +25,5 @@
         %td= link_to 'Edit', edit_task_path(task)
       - if permitted_to? :destroy, task
         %td= link_to 'Delete', task, :method => :delete 
+
 = link_to 'New Task', new_task_path(:project_id => @project.id)
