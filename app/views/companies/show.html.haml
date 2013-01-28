@@ -15,6 +15,7 @@
         %td= link_to 'Edit', edit_project_path(project)
       - if permitted_to? :destroy, :projects
         %td= link_to 'Delete', project, :method => :delete 
-
-- if permitted_to? :create, :projects
-  = link_to 'New Project', new_project_path(:company_id => @company.id)
+  %tr
+    %td
+    - if permitted_to? :create, :projects
+      %td= link_to 'New Project', new_project_path(:company_id => @company.id)

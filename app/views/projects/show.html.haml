@@ -28,5 +28,7 @@
         %td= link_to 'Edit', edit_task_path(task)
       - if permitted_to? :destroy, task
         %td= link_to 'Delete', task, :method => :delete 
-
-= link_to 'New Task', new_task_path(:project_id => @project.id)
+  %tr
+    %td
+    %td
+    %td= link_to 'New Task', new_task_path(:project_id => @project.id)
