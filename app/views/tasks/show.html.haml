@@ -4,6 +4,7 @@
 
 %table
   %tr
+    %td
     %td= link_to @task.project.name, @task.project
     %td= @task.project.completion
     %td= @task.project.goal_date
@@ -14,6 +15,8 @@
 
 %table
   %tr
+    %td
+    %td
     %td= check_box_tag :complete, 1, @task.complete, :disabled => true
     %td= link_to @task.title, @task
     %td= @task.description
@@ -28,6 +31,10 @@
 %table
   - @task.comments.each do |comment|
     %tr
+      %td
+      %td
+      %td
+      %td
       %td= comment.comment
       %td= comment.user.email
       - if permitted_to? :update, comment

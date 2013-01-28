@@ -4,6 +4,7 @@
 
 %table
   %tr
+    %td
     %td= link_to @project.name, @project
     %td= @project.completion
     %td= @project.goal_date
@@ -15,6 +16,8 @@
 %table
   - @project.tasks.order('complete asc, date(due) asc').each do |task|
     %tr
+      %td
+      %td
       %td= check_box_tag :complete, 1, task.complete, :disabled => true
       %td= link_to task.title, task
       %td= task.description
