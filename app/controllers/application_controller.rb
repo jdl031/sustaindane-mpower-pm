@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
 
   def index
   	if user_signed_in?
-  		redirect_to '/companies'
+  		if current_user.role.name == 'admin'
+  			redirect_to companies_path
+  		else
+	  		redirect_to current_user.company
+	  	end
   	else
   		redirect_to '/users/sign_in'
   	end

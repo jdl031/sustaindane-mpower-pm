@@ -6,6 +6,32 @@
   = link_to @task.title, @task
 %p#notice= notice
 
+Completion:
+= @task.project.completion
+%br
+Goal:
+= @task.project.goal_date
+%br
+
+Complete:
+= check_box_tag :complete, 1, @task.complete, :disabled => true
+%br
+Task:
+= link_to @task.title, @task
+%br
+Description:
+= @task.description
+%br
+Date Due:
+= @task.due
+%br
+Creator:
+= @task.creator.email
+%br
+Owner:
+= @task.owner.email
+%br
+
 - if permitted_to? :update, @task
   = link_to 'Edit', edit_task_path(@task)
 = link_to 'New Comment', new_comment_path(:task_id => @task.id)

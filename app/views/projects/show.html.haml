@@ -5,22 +5,29 @@
 
 %p#notice= notice
 
+Completion:
+= @project.completion
+%br
+Goal:
+= @project.goal_date
+%br
+
 - if permitted_to? :update, @project
   = link_to 'Edit', edit_project_path(@project)
 = link_to 'New Task', new_task_path(:project_id => @project.id)
 %table
   %tr
+    %th Complete
     %th Task
     %th Description
-    %th Complete
     %th Date Due
     %th Creator
     %th Owner
-  - @project.tasks.each do |task|
+  - @project.tasks.order('complete asc, date(due) asc').each do |task|
     %tr
+      %td= check_box_tag :complete, 1, task.complete, :disabled => true
       %td= link_to task.title, task
       %td= task.description
-      %td= task.complete
       %td= task.due
       %td= task.creator.email
       %td= task.owner.email

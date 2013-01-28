@@ -3,21 +3,21 @@
 
 %p#notice= notice
 
+- if permitted_to? :update, @company
+  = link_to 'Edit', edit_company_path(@company)
+- if permitted_to? :create, :projects
+  = link_to 'New Project', new_project_path(:company_id => @company.id)
 %table
   %tr
     %th Project
     %th Completion
     %th Goal Date
-    - if permitted_to? :update, :company
-      %th= link_to 'Edit', edit_company_path(@company)
-    - if permitted_to? :create, :company
-      %th= link_to 'New', new_project_path(:company_id => @company.id)
-  - @company.projects.each do |project|
+  - @company.projects.order('goal_date asc').each do |project|
     %tr
       %td= link_to project.name, project
       %td= project.completion
       %td= project.goal_date
-      - if permitted_to? :update, :project
+      - if permitted_to? :update, :projects
         %td= link_to 'Edit', edit_project_path(project)
-      - if permitted_to? :destroy, :project
+      - if permitted_to? :destroy, :projects
         %td= link_to 'Delete', project, :method => :delete 
