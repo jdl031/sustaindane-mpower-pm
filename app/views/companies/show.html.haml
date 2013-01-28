@@ -18,4 +18,4 @@
   %tr
     %td
     - if permitted_to? :create, :projects
-      %td= link_to 'New Project', new_project_path(:company_id => @company.id)
+      %td{:colspan => 3}= link_to 'New Project', new_project_path(:company_id => @company.id)
