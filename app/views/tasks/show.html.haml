@@ -29,7 +29,7 @@
       %td= link_to 'Delete', @task, :method => :delete 
 
 %table
-  - @task.comments.order('date(created_at) asc').each do |comment|
+  - @task.comments.order('created_at asc').each do |comment|
     %tr
       %td
       %td
