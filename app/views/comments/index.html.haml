@@ -11,8 +11,8 @@
 
   - @comments.each do |comment|
     %tr
-      %td= comment.task
-      %td= comment.user
+      %td= comment.task.title
+      %td= comment.user.email
       %td= comment.comment
       %td= link_to 'Show', comment
       - if permitted_to? :update, comment
