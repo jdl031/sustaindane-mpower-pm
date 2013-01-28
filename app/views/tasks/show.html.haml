@@ -1,40 +1,47 @@
-%h1
-  = link_to @task.project.company.name, @task.project.company
-  >
-  = link_to @task.project.name, @task.project
-  >
-  = link_to @task.title, @task
+%h1= link_to @task.project.company.name, @task.project.company
+
 %p#notice= notice
-
-Completion:
-= @task.project.completion
-%br
-Goal:
-= @task.project.goal_date
 %br
 
-Complete:
-= check_box_tag :complete, 1, @task.complete, :disabled => true
+
+%table
+  %tr
+    %th Project
+    %th Completion
+    %th Goal Date
+  %tr
+    %td= link_to @task.project.name, @task.project
+    %td= @task.project.completion
+    %td= @task.project.goal_date
+    - if permitted_to? :update, :projects
+      %td= link_to 'Edit', edit_project_path(@task.project)
+    - if permitted_to? :destroy, :projects
+      %td= link_to 'Delete', @task.project, :method => :delete 
 %br
-Task:
-= link_to @task.title, @task
-%br
-Description:
-= @task.description
-%br
-Date Due:
-= @task.due
-%br
-Creator:
-= @task.creator.email
-%br
-Owner:
-= @task.owner.email
 %br
 
-- if permitted_to? :update, @task
-  = link_to 'Edit', edit_task_path(@task)
-= link_to 'New Comment', new_comment_path(:task_id => @task.id)
+%table
+  %tr
+    %th Complete
+    %th Task
+    %th Description
+    %th Date Due
+    %th Creator
+    %th Owner
+    %tr
+      %td= check_box_tag :complete, 1, @task.complete, :disabled => true
+      %td= link_to @task.title, @task
+      %td= @task.description
+      %td= @task.due
+      %td= @task.creator.email
+      %td= @task.owner.email
+      - if permitted_to? :update, @task
+        %td= link_to 'Edit', edit_task_path(@task)
+      - if permitted_to? :destroy, @task
+        %td= link_to 'Delete', @task, :method => :delete 
+%br
+%br
+
 %table
   %tr
     %th Comment
@@ -47,4 +54,4 @@ Owner:
         %td= link_to 'Edit', edit_comment_path(comment)
       - if permitted_to? :destroy, comment
         %td= link_to 'Delete', comment, :method => :delete 
-
+= link_to 'New Comment', new_comment_path(:task_id => @task.id)

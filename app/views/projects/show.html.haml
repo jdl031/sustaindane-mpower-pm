@@ -1,20 +1,23 @@
-%h1
-  = link_to @project.company.name, @project.company
-  >
-  = link_to @project.name, @project
+%h1= link_to @project.company.name, @project.company
 
 %p#notice= notice
-
-Completion:
-= @project.completion
-%br
-Goal:
-= @project.goal_date
 %br
 
-- if permitted_to? :update, @project
-  = link_to 'Edit', edit_project_path(@project)
-= link_to 'New Task', new_task_path(:project_id => @project.id)
+%table
+  %tr
+    %th Project
+    %th Completion
+    %th Goal Date
+  %tr
+    %td= link_to @project.name, @project
+    %td= @project.completion
+    %td= @project.goal_date
+    - if permitted_to? :update, :projects
+      %td= link_to 'Edit', edit_project_path(@project)
+    - if permitted_to? :destroy, :projects
+      %td= link_to 'Delete', @project, :method => :delete 
+%br
+%br
 %table
   %tr
     %th Complete
@@ -35,3 +38,4 @@ Goal:
         %td= link_to 'Edit', edit_task_path(task)
       - if permitted_to? :destroy, task
         %td= link_to 'Delete', task, :method => :delete 
+= link_to 'New Task', new_task_path(:project_id => @project.id)
