@@ -37,6 +37,7 @@
       %td
       %td= comment.comment
       %td= comment.user.email
+      %td= comment.created_at
       - if permitted_to? :update, comment
         %td= link_to 'Edit', edit_comment_path(comment)
       - if permitted_to? :destroy, comment
