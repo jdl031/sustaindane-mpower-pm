@@ -10,9 +10,11 @@
   - @companies.each do |company|
     %tr
       %td= link_to company.name, company
-      %td= link_to 'Edit', edit_company_path(company)
-      %td= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }
+      - if permitted_to? :update, :company
+        %td= link_to 'Edit', edit_company_path(company)
+      - if permitted_to? :destroy, :company
+        %td= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
-- if current_user.role.name != 'user'
+- if permitted_to? :create, :company
   = link_to 'New Company', new_company_path

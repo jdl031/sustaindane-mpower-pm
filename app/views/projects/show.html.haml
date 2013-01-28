@@ -5,6 +5,9 @@
 
 %p#notice= notice
 
+- if permitted_to? :update, @project
+  = link_to 'Edit', edit_project_path(@project)
+= link_to 'New Task', new_task_path(:project_id => @project.id)
 %table
   %tr
     %th Task
@@ -13,8 +16,6 @@
     %th Date Due
     %th Creator
     %th Owner
-    %th= link_to 'Edit', edit_project_path(@project)
-    %th= link_to 'New', new_task_path(:project_id => @project.id)
   - @project.tasks.each do |task|
     %tr
       %td= link_to task.title, task
@@ -23,6 +24,7 @@
       %td= task.due
       %td= task.creator.email
       %td= task.owner.email
-      %td= link_to 'Edit', edit_task_path(task)
-      %td= link_to 'Delete', task, :method => :delete 
-
+      - if permitted_to? :update, task
+        %td= link_to 'Edit', edit_task_path(task)
+      - if permitted_to? :destroy, task
+        %td= link_to 'Delete', task, :method => :delete 

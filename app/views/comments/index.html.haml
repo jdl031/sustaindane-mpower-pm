@@ -15,7 +15,9 @@
       %td= comment.user
       %td= comment.comment
       %td= link_to 'Show', comment
-      %td= link_to 'Edit', edit_comment_path(comment)
-      %td= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }
+      - if permitted_to? :update, comment
+        %td= link_to 'Edit', edit_comment_path(comment)
+      - if permitted_to? :destroy, comment
+        %td= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

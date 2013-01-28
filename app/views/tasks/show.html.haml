@@ -6,16 +6,19 @@
   = link_to @task.title, @task
 %p#notice= notice
 
+- if permitted_to? :update, @task
+  = link_to 'Edit', edit_task_path(@task)
+= link_to 'New Comment', new_comment_path(:task_id => @task.id)
 %table
   %tr
     %th Comment
     %th User
-    %th= link_to 'Edit', edit_task_path(@task)
-    %th= link_to 'New', new_comment_path(:task_id => @task.id)
   - @task.comments.each do |comment|
     %tr
       %td= comment.comment
       %td= comment.user.email
-      %td= link_to 'Edit', edit_comment_path(comment)
-      %td= link_to 'Delete', comment, :method => :delete 
+      - if permitted_to? :update, comment
+        %td= link_to 'Edit', edit_comment_path(comment)
+      - if permitted_to? :destroy, comment
+        %td= link_to 'Delete', comment, :method => :delete 
 
