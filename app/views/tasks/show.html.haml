@@ -6,7 +6,8 @@
   %tr
     %td
     %td= link_to @task.project.name, @task.project
-    %td= @task.project.completion
+    %td
+      %progress{ :max=>1.0, :value=>@task.project.completion }
     %td= @task.project.goal_date
     - if permitted_to? :update, :projects
       %td= link_to 'Edit', edit_project_path(@task.project)
