@@ -20,12 +20,11 @@
       - if current_user.role.name == 'admin'
         |
         = link_to('Companies', companies_path)
-      |
-      = link_to('My Projects', projects_path)
+      - else
+        |
+        = link_to('My Company', current_user.company)
       |
       = link_to('My Tasks', tasks_path)
-      |
-      = link_to('My Comments', comments_path)
       |
       = link_to('Sign Out', destroy_user_session_path, :method => :delete)
     %br

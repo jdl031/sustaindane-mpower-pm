@@ -1,33 +1,22 @@
-%h1 Listing tasks
+%h1 My Tasks
 
-%table
-  %tr
-    %th Project
-    %th Title
-    %th Description
-    %th Complete
-    %th Due
-    %th Creator
-    %th Owner
-    %th
-    %th
-    %th
-
-  - @tasks.map do |project,tasks|
+- @tasks.map do |project,tasks|
+  %table
     %tr
       %td= link_to project.name, project
-      - tasks.each do |task|
-        %tr
-          %td 
-          %td= link_to task.title, task
-          %td= task.description
-          %td= task.complete
-          %td= task.due
-          %td= task.creator.email
-          %td= task.owner.email
-          - if permitted_to? :update, task
-            %td= link_to 'Edit', edit_task_path(task)
-          - if permitted_to? :destroy, task
-            %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }
+  %table
+    - tasks.each do |task|
+      %tr
+        %td 
+        %td= link_to task.title, task
+        %td= task.description
+        %td= task.complete
+        %td= task.due
+        %td= task.creator.email
+        %td= task.owner.email
+        - if permitted_to? :update, task
+          %td= link_to 'Edit', edit_task_path(task)
+        - if permitted_to? :destroy, task
+          %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
