@@ -4,44 +4,54 @@
 
 .row
   .span9
-    = link_to @task.project.name, @task.project
-    .progress.progress_striped{ :style => 'width: 200px;'}
-      .bar{ :style => "width: #{@task.project.completion * 100.0}%;" }
-    = @task.project.goal_date
-    .btn-group
+    .btn-group.pull-right
       - if permitted_to? :update, :projects
         = link_to 'Edit', edit_project_path(@task.project), :class => 'btn'
       - if permitted_to? :destroy, :projects
         = link_to 'Delete', @task.project, {:method => :delete, :class => 'btn'}
+    = link_to @task.project.name, @task.project
+    .progress.progress_striped{ :style => 'width: 200px;'}
+      .bar{ :style => "width: #{@task.project.completion * 100.0}%;" }
+    = @task.project.goal_date
 
 .row
   .span9
-    = check_box_tag :complete, 1, @task.complete, :disabled => true
-    = link_to @task.title, @task
-    = @task.description
-    = @task.due
-    = @task.creator.email
-    = @task.owner.email
-    .btn-group
-      - if permitted_to? :update, @task
-        = link_to 'Edit', edit_task_path(@task), :class => 'btn'
-      - if permitted_to? :destroy, @task
-        = link_to 'Delete', @task, {:method => :delete, :class => 'btn'}
+    .row
+      .span9
+        .btn-group.pull-right
+          - if permitted_to? :update, @task
+            = link_to 'Edit', edit_task_path(@task), :class => 'btn'
+          - if permitted_to? :destroy, @task
+            = link_to 'Delete', @task, {:method => :delete, :class => 'btn'}
+        = check_box_tag :complete, 1, @task.complete, :disabled => true
+        = link_to @task.title, @task
+    .row
+      .span9
+        = @task.due
+        = @task.creator.email
+        = @task.owner.email
+    .row
+      .span9
+        = @task.description
 
 .row
   .span9
     - @task.comments.order('created_at asc').each do |comment|
       .row
         .span9
-          = comment.comment
-          = comment.user.email
-          = comment.created_at
-          .btn-group
+          %hr
+          .btn-group.pull-right
             - if permitted_to? :update, comment
               = link_to 'Edit', edit_comment_path(comment), :class => 'btn'
             - if permitted_to? :destroy, comment
               = link_to 'Delete', comment, {:method => :delete, :class => 'btn'}
+          = comment.user.email
+          = comment.created_at
+      .row
+        .span9
+          = comment.comment
     .row
       .span9
+        %hr
         .btn-group
           = link_to 'New Comment', new_comment_path(:task_id => @task.id), :class => 'btn btn-primary'

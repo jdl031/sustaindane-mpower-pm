@@ -1,23 +1,28 @@
 %p#notice= notice
 
-= link_to @company.name, @company
 
-- if permitted_to? :update, @company
-  = link_to 'Edit', edit_company_path(@company), :class => 'btn'
+.row
+  .span9
+    - if permitted_to? :update, @company
+      .btn-group.pull-right
+        = link_to 'Edit', edit_company_path(@company), :class => 'btn'
+    = link_to @company.name, @company
+
 .row
   .span9
     - @company.projects.order('goal_date asc').each do |project|
       .row
         .span9
-          = link_to project.name, project
-          = project.goal_date
-          .btn-group
+          .btn-group.pull-right
             - if permitted_to? :update, :projects
               = link_to 'Edit', edit_project_path(project), :class => 'btn'
             - if permitted_to? :destroy, :projects
               = link_to 'Delete', project, {:method => :delete, :class => 'btn'}
+          = link_to project.name, project
+          = project.goal_date
           .progress.progress_striped{ :style => 'width: 200px;'}
             .bar{ :style => "width: #{project.completion * 100.0}%;" }
+          %hr
     .row
       .span9
         - if permitted_to? :create, :projects
