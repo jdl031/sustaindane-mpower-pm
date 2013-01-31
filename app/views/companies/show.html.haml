@@ -21,4 +21,4 @@
     .row
       .span9
         - if permitted_to? :create, :projects
-          = link_to 'New Project', new_project_path(:company_id => @company.id), :class => 'btn'
+          = link_to 'New Project', new_project_path(:company_id => @company.id), :class => 'btn btn-primary'
