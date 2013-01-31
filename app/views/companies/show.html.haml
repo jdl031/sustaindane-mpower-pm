@@ -3,21 +3,22 @@
 = link_to @company.name, @company
 
 - if permitted_to? :update, @company
-  = link_to 'Edit', edit_company_path(@company)
-%table
-  - @company.projects.order('goal_date asc').each do |project|
-    %tr
-      %td
-      %td= link_to project.name, project
-      %td
-        .progress.progress_striped{ :style => 'width: 200px;'}
-          .bar{ :style => "width: #{project.completion * 100.0}%;" }
-      %td= project.goal_date
-      - if permitted_to? :update, :projects
-        %td= link_to 'Edit', edit_project_path(project)
-      - if permitted_to? :destroy, :projects
-        %td= link_to 'Delete', project, :method => :delete 
-  %tr
-    %td
-    - if permitted_to? :create, :projects
-      %td{:colspan => 3}= link_to 'New Project', new_project_path(:company_id => @company.id)
+  = link_to 'Edit', edit_company_path(@company), :class => 'btn'
+.row
+  .span9
+    - @company.projects.order('goal_date asc').each do |project|
+      .row
+        .span9
+          = link_to project.name, project
+          = project.goal_date
+          .btn-group
+            - if permitted_to? :update, :projects
+              = link_to 'Edit', edit_project_path(project), :class => 'btn'
+            - if permitted_to? :destroy, :projects
+              = link_to 'Delete', project, {:method => :delete, :class => 'btn'}
+          .progress.progress_striped{ :style => 'width: 200px;'}
+            .bar{ :style => "width: #{project.completion * 100.0}%;" }
+    .row
+      .span9
+        - if permitted_to? :create, :projects
+          = link_to 'New Project', new_project_path(:company_id => @company.id), :class => 'btn'
