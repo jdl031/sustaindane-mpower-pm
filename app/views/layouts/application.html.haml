@@ -12,21 +12,31 @@
         window._auth_token = "\#{form_authenticity_token}";
       = javascript_include_tag 'application'
   %body
-    - if user_signed_in?
-      = current_user.email
-      - if ['admin', 'company_admin'].include? current_user.role.name
-        |
-        = link_to('Register User', new_user_registration_path)
-      - if current_user.role.name == 'admin'
-        |
-        = link_to('Companies', companies_path)
-      - else
-        |
-        = link_to('My Company', current_user.company)
-      |
-      = link_to('My Tasks', tasks_path)
-      |
-      = link_to('Sign Out', destroy_user_session_path, :method => :delete)
     %br
     %br
-    = yield
+    .container
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container
+            .brand= link_to 'Sustain Dane', '/'
+            .nav
+              %ul.nav
+                - if user_signed_in?
+                  - if ['admin', 'company_admin'].include? current_user.role.name
+                    %li= link_to('Register User', new_user_registration_path)
+                  - if current_user.role.name == 'admin'
+                    %li= link_to('Companies', companies_path)
+                  - else
+                    %li= link_to('My Company', current_user.company)
+                  %li= link_to('My Tasks', tasks_path)
+            .nav.pull-right
+              - if user_signed_in?
+                %ul.nav
+                  %li.navbar-text= current_user.email
+                  %li= link_to('Sign Out', destroy_user_session_path, :method => :delete)
+              - else
+                = form_tag user_session_path, :class => 'navbar-form' do
+                  = text_field_tag 'user[email]', '', {:class => 'span2', :placeholder => 'username'}
+                  = password_field_tag 'user[password]', '', {:class => 'span2', :placeholder => 'password'}
+                  %button.btn Sign in
+      = yield

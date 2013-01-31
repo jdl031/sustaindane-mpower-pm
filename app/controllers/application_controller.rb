@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
   		else
 	  		redirect_to current_user.company
 	  	end
-  	else
-  		redirect_to '/users/sign_in'
   	end
   end
 end

@@ -7,7 +7,8 @@
     %td
     %td= link_to @project.name, @project
     %td
-      %progress{ :max=>1.0, :value=>@project.completion }
+      .progress.progress_striped{ :style => 'width: 200px;'}
+        .bar{ :style => "width: #{@project.completion * 100.0}%;" }
     %td= @project.goal_date
     - if permitted_to? :update, :projects
       %td= link_to 'Edit', edit_project_path(@project)
