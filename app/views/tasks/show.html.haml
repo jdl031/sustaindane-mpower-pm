@@ -43,11 +43,11 @@
             .pull-left= image_tag avatar_url(comment.user)
             .media-body
               .media-heading
-                = comment.created_at
-                = comment.user.email
+                %small= comment.user.email
+                %small= comment.created_at
               = comment.comment
           %hr
     .row
       .span10.offset1
-        .btn-group
-          = link_to 'New Comment', new_comment_path(:task_id => @task.id), :class => 'btn btn-primary'
+        = render :partial => 'comments/form', :locals => { :@comment => Comment.new(:task_id=>@task.id, :user_id=>current_user.id) }
+

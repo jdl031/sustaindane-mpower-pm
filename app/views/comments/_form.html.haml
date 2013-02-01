@@ -6,12 +6,16 @@
         - @comment.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.hidden_field :task_id
-  .field
-    = f.hidden_field :user_id
-  .field
-    = f.label :comment
-    = f.text_field :comment
-  .actions
-    = f.submit 'Save'
+  .media
+    .pull-left= image_tag avatar_url(current_user)
+    .media-body
+      .media-heading
+        = f.label 'New Comment'
+      .field
+        = f.hidden_field :task_id
+      .field
+        = f.hidden_field :user_id
+      .field
+        = f.text_area :comment, { :size=>'100x4', :style=>'width: 98%;' }
+  .actions.pull-right
+    = f.submit 'Save', :class => 'btn btn-primary'

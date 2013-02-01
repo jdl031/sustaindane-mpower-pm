@@ -6,26 +6,30 @@
         - @task.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.hidden_field :project_id
-  .field
-    = f.hidden_field :creator_id
-  .field
-    = f.hidden_field :owner_id
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :due
-    = f.datetime_select :due
-  .field
-    = f.label :complete
-    = f.check_box :complete
-  .field
-    = f.label :owner
-    = f.collection_select :owner_id, User.where('company_id = ?', @task.project.company_id), :id, :email
+  .media
+    .media-body
+      .media-heading
+        = f.label 'New Task'
+      .field
+        = f.hidden_field :project_id
+      .field
+        = f.hidden_field :creator_id
+      .field
+        = f.hidden_field :owner_id
+      .field
+        = f.label :title
+        = f.text_field :title
+      .field
+        = f.label :description
+        = f.text_field :description
+      .field
+        = f.label :due
+        = f.datetime_select :due
+      .field
+        = f.label :complete
+        = f.check_box :complete
+      .field
+        = f.label :owner
+        = f.collection_select :owner_id, User.where('company_id = ?', @task.project.company_id), :id, :email
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :class => 'btn btn-primary'

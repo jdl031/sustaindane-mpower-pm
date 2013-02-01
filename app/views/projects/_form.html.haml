@@ -6,13 +6,17 @@
         - @project.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.hidden_field :company_id
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :goal_date
-    = f.datetime_select :goal_date
+  .media
+    .media-body
+      .media-heading
+        = f.label 'New Project'
+      .field
+        = f.hidden_field :company_id
+      .field
+        = f.label :name
+        = f.text_field :name
+      .field
+        = f.label :goal_date
+        = f.datetime_select :goal_date
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :class => 'btn btn-primary'

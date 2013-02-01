@@ -12,6 +12,7 @@
 
 .row
   .span12
+    %hr
     - @company.projects.order('goal_date asc').each do |project|
       .row
         .span10.offset1
@@ -28,4 +29,4 @@
     .row
       .span10.offset1
         - if permitted_to? :create, :projects
-          = link_to 'New Project', new_project_path(:company_id => @company.id), :class => 'btn btn-primary'
+          = render :partial => 'projects/form', :locals => { :@project => Project.new(:company_id=>@company.id) }
