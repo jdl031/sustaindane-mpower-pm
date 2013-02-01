@@ -1,18 +1,20 @@
 %p#notice= notice
 
+%ul.breadcrumb
+  %li.active= @company.name
 
 .row
-  .span9
+  .span12
     - if permitted_to? :update, @company
       .btn-group.pull-right
         = link_to 'Edit', edit_company_path(@company), :class => 'btn'
-    = link_to @company.name, @company
+    %h1= @company.name
 
 .row
-  .span9
+  .span12
     - @company.projects.order('goal_date asc').each do |project|
       .row
-        .span9
+        .span10.offset1
           .btn-group.pull-right
             - if permitted_to? :update, :projects
               = link_to 'Edit', edit_project_path(project), :class => 'btn'
@@ -24,6 +26,6 @@
             .bar{ :style => "width: #{project.completion * 100.0}%;" }
           %hr
     .row
-      .span9
+      .span10.offset1
         - if permitted_to? :create, :projects
           = link_to 'New Project', new_project_path(:company_id => @company.id), :class => 'btn btn-primary'
