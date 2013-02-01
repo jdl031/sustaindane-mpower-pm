@@ -7,18 +7,18 @@
     %button.close{'data-dismiss'=>'alert'} &times;
 
 .row
-  .span12
+  .span7
     - if permitted_to? :update, @company
       .btn-group.pull-right
         = link_to 'Edit', edit_company_path(@company), :class => 'btn'
     %h1= @company.name
 
 .row
-  .span12
+  .span7
     %hr
     - @company.projects.order('goal_date asc').each do |project|
       .row
-        .span10.offset1
+        .span6.offset1
           .btn-group.pull-right
             - if permitted_to? :update, :projects
               = link_to 'Edit', edit_project_path(project), :class => 'btn'
@@ -33,10 +33,10 @@
                     %span.label.label-important Overdue
               .media-heading
                 %small= project.goal_date
-              .progress.progress_striped{ :style => 'width: 200px;'}
+              .progress.progress_striped
                 .bar{ :style => "width: #{project.completion * 100.0}%;" }
           %hr
     .row
-      .span10.offset1
+      .span6.offset1
         - if permitted_to? :create, :projects
           = render :partial => 'projects/form', :locals => { :@project => Project.new(:company_id=>@company.id) }
