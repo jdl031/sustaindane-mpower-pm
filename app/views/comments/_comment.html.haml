@@ -1,0 +1,14 @@
+.btn-group.pull-right
+  - if permitted_to? :update, comment
+    = link_to 'Edit', edit_comment_path(comment), :class => 'btn'
+  - if permitted_to? :destroy, comment
+    = link_to 'Delete', comment, {:method => :delete, :class => 'btn'}
+.media
+  .pull-left= image_tag avatar_url(comment.user)
+  .media-body
+    %h4.media-heading
+      = comment.user.email
+    .media-heading
+      %small= comment.created_at ? comment.created_at.strftime('%A, %B %d %Y, %l:%M %P') : ''
+    = comment.comment
+%hr

@@ -14,46 +14,12 @@
 
 .row
   .span7
-    .btn-group.pull-right
-      - if permitted_to? :update, @task
-        = link_to 'Edit', edit_task_path(@task), :class => 'btn'
-      - if permitted_to? :destroy, @task
-        = link_to 'Delete', @task, {:method => :delete, :class => 'btn'}
-    %h1= @task.title
-    %small= @task.due ? @task.due.strftime('%A, %B %d %Y, %l:%M %P') : ''
-    - if @task.complete
-      %span.label.label-success Complete
-    - elsif @task.due < Date.today
-      %span.label.label-important Overdue
-    .media-heading
-      %small= @task.creator.email
-    .media-heading
-      %small= @task.owner.email
-.row
-  .span7
-    = @task.description
+    = render :partial => 'tasks/task', :object => @task
 
 .row
-  .span7
-    %hr
-    - @task.comments.order('created_at asc').each do |comment|
-      .row
-        .span6.offset1
-          .btn-group.pull-right
-            - if permitted_to? :update, comment
-              = link_to 'Edit', edit_comment_path(comment), :class => 'btn'
-            - if permitted_to? :destroy, comment
-              = link_to 'Delete', comment, {:method => :delete, :class => 'btn'}
-          .media
-            .pull-left= image_tag avatar_url(comment.user)
-            .media-body
-              %h4.media-heading
-                = comment.user.email
-              .media-heading
-                %small= comment.created_at ? comment.created_at.strftime('%A, %B %d %Y, %l:%M %P') : ''
-              = comment.comment
-          %hr
+  .span6.offset1
+    = render :partial => 'comments/comment', :collection => @task.comments.order('created_at asc')
     .row
-      .span6.offset1
+      .span6
         = render :partial => 'comments/form', :locals => { :@comment => Comment.new(:task_id=>@task.id, :user_id=>current_user.id) }
 

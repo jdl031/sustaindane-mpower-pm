@@ -14,28 +14,8 @@
     %h1= @company.name
 
 .row
-  .span7
-    %hr
-    - @company.projects.order('goal_date asc').each do |project|
-      .row
-        .span6.offset1
-          .btn-group.pull-right
-            - if permitted_to? :update, :projects
-              = link_to 'Edit', edit_project_path(project), :class => 'btn'
-            - if permitted_to? :destroy, :projects
-              = link_to 'Delete', project, {:method => :delete, :class => 'btn'}
-          .media
-            .media-body
-              .media-heading
-                %h4.media-heading
-                  = link_to project.name, project
-                  - if project.goal_date && project.goal_date < Date.today
-                    %span.label.label-important Overdue
-              .media-heading
-                %small= project.goal_date
-              .progress.progress_striped
-                .bar{ :style => "width: #{project.completion * 100.0}%;" }
-          %hr
+  .span6.offset1
+    = render :partial => 'projects/project', :collection => @company.projects.order('goal_date asc')
     .row
       .span6.offset1
         - if permitted_to? :create, :projects
