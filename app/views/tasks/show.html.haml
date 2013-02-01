@@ -1,5 +1,3 @@
-%p#notice= notice
-
 %ul.breadcrumb
   %li
     = link_to @task.project.company.name, @task.project.company
@@ -9,6 +7,10 @@
     %span.divider /
   %li.active= @task.title
 
+- if notice
+  .alert
+    = notice
+    %button.close{'data-dismiss'=>'alert'} &times;
 
 .row
   .span12
@@ -20,10 +22,13 @@
           - if permitted_to? :destroy, @task
             = link_to 'Delete', @task, {:method => :delete, :class => 'btn'}
         %h1= @task.title
-        = @task.due
-        = @task.creator.email
-        = @task.owner.email
-        = check_box_tag :complete, 1, @task.complete, :disabled => true
+        %small= @task.due
+        - if @task.complete
+          %span.label.label-success Complete
+        - elsif @task.due < Date.today
+          %span.label.label-important Overdue
+        %small= @task.creator.email
+        %small= @task.owner.email
     .row
       .span12
         = @task.description
