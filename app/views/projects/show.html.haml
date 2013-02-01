@@ -14,13 +14,15 @@
       - if permitted_to? :destroy, :projects
         = link_to 'Delete', @project, {:method => :delete, :class => 'btn'}
     %h1= @project.name
+    = @project.goal_date
+    - if @project.goal_date && @project.goal_date < Date.today
+      %span.label.label-important Overdue
     .progress.progress_striped{ :style => 'width: 200px;'}
       .bar{ :style => "width: #{@project.completion * 100.0}%;" }
-    = @project.goal_date
 
 
 .row
-  .span10
+  .span12
     %hr
     - @project.tasks.order('complete asc, date(due) asc').each do |task|
       .row
@@ -34,8 +36,11 @@
             .pull-left= image_tag avatar_url(task.owner)
             .media-body
               .media-heading
-                = check_box_tag :complete, 1, task.complete, :disabled => true
                 = link_to task.title, task
+                - if task.complete
+                  %span.label.label-success Complete
+                - elsif task.due < Date.today
+                  %span.label.label-important Overdue
               .media-heading
                 %small= task.due
                 %small= task.creator.email

@@ -21,10 +21,16 @@
               = link_to 'Edit', edit_project_path(project), :class => 'btn'
             - if permitted_to? :destroy, :projects
               = link_to 'Delete', project, {:method => :delete, :class => 'btn'}
-          = link_to project.name, project
-          = project.goal_date
-          .progress.progress_striped{ :style => 'width: 200px;'}
-            .bar{ :style => "width: #{project.completion * 100.0}%;" }
+          .media
+            .media-body
+              .media-heading
+                = link_to project.name, project
+                - if project.goal_date && project.goal_date < Date.today
+                  %span.label.label-important Overdue
+              .media-heading
+                %small= project.goal_date
+              .progress.progress_striped{ :style => 'width: 200px;'}
+                .bar{ :style => "width: #{project.completion * 100.0}%;" }
           %hr
     .row
       .span10.offset1
