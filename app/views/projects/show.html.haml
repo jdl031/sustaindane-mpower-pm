@@ -36,11 +36,12 @@
             .pull-left= image_tag avatar_url(task.owner)
             .media-body
               .media-heading
-                = link_to task.title, task
-                - if task.complete
-                  %span.label.label-success Complete
-                - elsif task.due < Date.today
-                  %span.label.label-important Overdue
+                %h4.media-heading
+                  = link_to task.title, task
+                  - if task.complete
+                    %span.label.label-success Complete
+                  - elsif task.due < Date.today
+                    %span.label.label-important Overdue
               .media-heading
                 %small= task.due
                 %small= task.creator.email

@@ -24,9 +24,10 @@
           .media
             .media-body
               .media-heading
-                = link_to project.name, project
-                - if project.goal_date && project.goal_date < Date.today
-                  %span.label.label-important Overdue
+                %h4.media-heading
+                  = link_to project.name, project
+                  - if project.goal_date && project.goal_date < Date.today
+                    %span.label.label-important Overdue
               .media-heading
                 %small= project.goal_date
               .progress.progress_striped{ :style => 'width: 200px;'}
