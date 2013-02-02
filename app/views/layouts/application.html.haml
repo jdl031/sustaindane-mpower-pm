@@ -37,8 +37,12 @@
                   %li.navbar-text= current_user.email
                   %li= link_to('Sign Out', destroy_user_session_path, :method => :delete)
               - else
-                = form_tag user_session_path, :class => 'navbar-form' do
-                  = text_field_tag 'user[email]', '', {:class => 'span2', :placeholder => 'username'}
-                  = password_field_tag 'user[password]', '', {:class => 'span2', :placeholder => 'password'}
-                  %button.btn Sign in
+                = form_tag user_session_path, :class => 'form-inline' do
+                  = text_field_tag '', '', :placeholder=>'Email'
+                  = password_field_tag '', '', :placeholder=>'Password'
+                  %label.checkbox
+                    = check_box_tag :rememberme
+                    Remember Me
+                  %button.btn{:type=>'submit'}= 'Sign In'
       = yield
+
