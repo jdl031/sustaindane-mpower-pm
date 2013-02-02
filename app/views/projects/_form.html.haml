@@ -1,22 +1,25 @@
-= form_for @project do |f|
-  - if @project.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
-      %ul
-        - @project.errors.full_messages.each do |msg|
-          %li= msg
+.form-horizontal
+  = form_for @project do |f|
+    - if @project.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+        %ul
+          - @project.errors.full_messages.each do |msg|
+            %li= msg
 
-  .media
-    .media-body
-      .media-heading
-        = f.label 'New Project'
-      .field
-        = f.hidden_field :company_id
-      .field
-        = f.label :name
-        = f.text_field :name
-      .field
-        = f.label :goal_date
-        = f.datetime_select :goal_date
-  .actions
-    = f.submit 'Save', :class => 'btn btn-primary'
+    .media
+      %h3 New Project
+      .media-body
+        .media-heading
+          = f.hidden_field :company_id
+        .control-group
+          .control-label= f.label :name
+          .controls
+            = f.text_field :name
+        .control-group
+          .control-label= f.label :goal_date
+          .controls
+            = f.datetime_select :goal_date
+        .control-group
+          .controls
+            = f.submit 'Save', :class => 'btn btn-primary'

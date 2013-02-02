@@ -17,6 +17,6 @@
   .span6.offset1
     = render :partial => 'projects/project', :collection => @company.projects.order('goal_date asc')
     .row
-      .span6.offset1
+      .span6
         - if permitted_to? :create, :projects
           = render :partial => 'projects/form', :locals => { :@project => Project.new(:company_id=>@company.id) }

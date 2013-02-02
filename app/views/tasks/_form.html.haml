@@ -1,35 +1,39 @@
-= form_for @task do |f|
-  - if @task.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
-      %ul
-        - @task.errors.full_messages.each do |msg|
-          %li= msg
+.form-horizontal
+  = form_for @task do |f|
+    - if @task.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+        %ul
+          - @task.errors.full_messages.each do |msg|
+            %li= msg
 
-  .media
-    .media-body
-      .media-heading
-        = f.label 'New Task'
-      .field
-        = f.hidden_field :project_id
-      .field
-        = f.hidden_field :creator_id
-      .field
-        = f.hidden_field :owner_id
-      .field
-        = f.label :title
-        = f.text_field :title
-      .field
-        = f.label :description
-        = f.text_field :description
-      .field
-        = f.label :due
-        = f.datetime_select :due
-      .field
-        = f.label :complete
-        = f.check_box :complete
-      .field
-        = f.label :owner
-        = f.collection_select :owner_id, User.where('company_id = ?', @task.project.company_id), :id, :email
-  .actions
-    = f.submit 'Save', :class => 'btn btn-primary'
+    .media
+      .media-body
+        .media-heading
+          %h3 New Task
+          = f.hidden_field :project_id
+          = f.hidden_field :creator_id
+          = f.hidden_field :owner_id
+          .control-group
+            .control-label= f.label :title
+            .controls
+              = f.text_field :title
+          .control-group
+            .control-label= f.label :description
+            .controls
+              = f.text_area :description, :rows=>'4'
+          .control-group
+            .control-label= f.label :due
+            .controls
+              = f.datetime_select :due
+          .control-group
+            .control-label= f.label :complete
+            .controls
+              = f.check_box :complete
+          .control-group
+            .control-label= f.label :owner
+            .controls
+              = f.collection_select :owner_id, User.where('company_id = ?', @task.project.company_id), :id, :email
+          .control-group
+            .controls
+              = f.submit 'Save', :class => 'btn btn-primary'
