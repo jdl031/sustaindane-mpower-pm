@@ -38,8 +38,8 @@
                   %li= link_to('Sign Out', destroy_user_session_path, :method => :delete)
               - else
                 = form_tag user_session_path, :class => 'form-inline' do
-                  = text_field_tag '', '', :placeholder=>'Email'
-                  = password_field_tag '', '', :placeholder=>'Password'
+                  = text_field_tag 'user[email]', '', :placeholder=>'Email'
+                  = password_field_tag 'user[password]', '', :placeholder=>'Password'
                   %label.checkbox
                     = check_box_tag :rememberme
                     Remember Me

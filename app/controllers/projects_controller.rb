@@ -42,6 +42,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+    params[:project][:goal_date] = DateTime.strptime(params[:project][:goal_date], '%m/%d/%Y').strftime('%Y/%m/%d')
     @project = Project.new(params[:project])
 
     respond_to do |format|
