@@ -1,20 +1,7 @@
 %h1 My Companies
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
-
-  - @companies.each do |company|
-    %tr
-      %td= link_to company.name, company
-      - if permitted_to? :update, :company
-        %td= link_to 'Edit', edit_company_path(company)
-      - if permitted_to? :destroy, :company
-        %td= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }
+= render :partial => 'companies/company', :collection => @companies
 
 %br
 - if permitted_to? :create, :companies
-  = link_to 'New Company', new_company_path
+  = render :partial => 'companies/form', :locals => { :@company => Company.new() }

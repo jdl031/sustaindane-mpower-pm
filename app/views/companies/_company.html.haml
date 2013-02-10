@@ -1,0 +1,6 @@
+.row
+  .span7
+    - if permitted_to? :update, company
+      .btn-group.pull-right
+        = link_to 'Edit', edit_company_path(company), :class => 'btn'
+    %h3= link_to company.name, company
