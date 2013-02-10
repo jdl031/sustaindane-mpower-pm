@@ -14,10 +14,16 @@
         - elsif task.due < Date.today
           %span.label.label-important Overdue
     .media-heading
-      %small= task.due ? task.due.strftime('%A, %B %d %Y, %l:%M %P') : ''
+      %small
+        Due:
+        = task.due ? task.due.strftime('%A, %B %d %Y, %l:%M %P') : ''
     .media-heading
-      %small= task.creator.email
+      %small
+        Creator:
+        = task.creator.email
     .media-heading
-      %small= task.owner.email
+      %small
+        Owner:
+        = task.owner.email
     = task.description
 %hr
