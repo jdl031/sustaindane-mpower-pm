@@ -12,7 +12,8 @@
           %span.label.label-important Overdue
     .media-heading
       %small= project.goal_date ? project.goal_date.strftime('%A, %B %d %Y, %l:%M %P') : ''
-    .progress.progress_striped
+    .progress
       .bar{ :style => "width: #{project.completion * 100.0}%;" }
+        = "#{project.completion * 100.0}%"
   %hr
   
