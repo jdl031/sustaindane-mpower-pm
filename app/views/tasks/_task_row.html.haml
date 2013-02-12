@@ -1,0 +1,19 @@
+%tr
+  %td
+    .media
+      .btn-group.pull-right
+        - if permitted_to? :destroy, task
+          = link_to 'Delete', task, {:method => :delete, :class => 'btn'}
+      .pull-left= image_tag avatar_url(task.owner,48)
+      .media-body
+        .media-heading
+          %strong= link_to task.title, task
+          - if task.complete
+            %span.label.label-success Complete
+          - elsif task.due < Date.today
+            %span.label.label-important Overdue
+        %small
+          by
+          = task.creator.email
+          due 
+          = task.due ? task.due.strftime('%A, %B %d %Y, %l:%M %P') : ''

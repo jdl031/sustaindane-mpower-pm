@@ -17,7 +17,7 @@
     = render :partial => 'tasks/task', :object => @task
 
 .row
-  .span6.offset1
+  .span7
     = render :partial => 'comments/comment', :collection => @task.comments.order('created_at asc')
     .row
       .span6

@@ -14,8 +14,9 @@
     =render :partial => 'projects/project', :object => @project
 
 .row
-  .span6.offset1
-    = render :partial => 'tasks/task', :collection => @project.tasks.order('complete asc, date(due) asc')
+  .span7
+    %table.table-striped
+      = render :partial => 'tasks/task_row', :as => :task, :collection => @project.tasks.order('complete asc, date(due) asc')
     .row
       .span6
         = render :partial => 'tasks/form', :locals => { :@task => Task.new(:project_id=>@project.id, :creator_id=>current_user.id,  :owner_id=>current_user.id) }

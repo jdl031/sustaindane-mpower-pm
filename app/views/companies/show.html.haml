@@ -14,7 +14,7 @@
     %h1= @company.name
 
 .row
-  .span6.offset1
+  .span7
     = render :partial => 'projects/project', :collection => @company.projects.order('goal_date asc')
     .row
       .span6

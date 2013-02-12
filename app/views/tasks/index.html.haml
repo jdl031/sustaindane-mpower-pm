@@ -5,7 +5,8 @@
     .span7
       %h2= link_to project.name, project
   .row
-    .span6.offset1
-      = render :partial => 'tasks/task', :collection => tasks
+    .span7
+      %table
+        = render :partial => 'tasks/task_row', :as => :task, :collection => tasks
 
 %br
