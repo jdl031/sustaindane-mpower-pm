@@ -14,6 +14,6 @@
       %small= project.goal_date ? project.goal_date.strftime('%A, %B %d %Y, %l:%M %P') : ''
     .progress
       .bar{ :style => "width: #{project.completion * 100.0}%;" }
-        = "#{project.completion * 100.0}%"
+        = "#{(project.completion * 100.0).to_i}%"
   %hr
   
