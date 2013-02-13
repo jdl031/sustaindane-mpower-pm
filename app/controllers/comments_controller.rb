@@ -44,8 +44,13 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
 
+    if params[:complete]
+      @comment.task.complete = true
+      @comment.task.save
+    end
+
     respond_to do |format|
-      if @comment.save
+      if @comment.comment.length == 0 || @comment.save
         format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
