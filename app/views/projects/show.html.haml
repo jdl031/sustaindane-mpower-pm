@@ -15,8 +15,15 @@
 
 .row
   .span7
+    %ul.nav.nav-tabs
+      - if params[:complete]
+        %li= link_to 'Incomplete', @project
+        %li.active= link_to 'Complete', project_path(@project, :complete=>1)
+      - else
+        %li.active= link_to 'Incomplete', @project
+        %li= link_to 'Complete', project_path(@project, :complete=>1)
     %table.table-striped
-      = render :partial => 'tasks/task_row', :as => :task, :collection => @project.tasks.order('complete asc, date(due) asc')
+      = render :partial => 'tasks/task_row', :as => :task, :collection => @project.tasks.where(:complete=>params[:complete]=='1').order('date(due) asc')
     .row
       .span6
         = render :partial => 'tasks/form', :locals => { :@task => Task.new(:project_id=>@project.id, :creator_id=>current_user.id,  :owner_id=>current_user.id) }
