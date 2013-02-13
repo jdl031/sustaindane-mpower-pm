@@ -7,22 +7,18 @@
   .pull-left= image_tag avatar_url(task.owner)
   .media-body
     .media-heading
+      %small.media-heading
+        by
+        = task.creator.email
+        due
+        = task.due ? task.due.strftime('%A, %B %d %Y') : ''
       %h4.media-heading
         = link_to task.title, task
         - if task.complete
           %span.label.label-success Complete
         - elsif task.due < Date.today
           %span.label.label-important Overdue
-    .media-heading
-      %small
-        Due:
-        = task.due ? task.due.strftime('%A, %B %d %Y') : ''
-    .media-heading
-      %small
-        Creator:
-        = task.creator.email
-    .media-heading
-      %small
+      %small.media-heading
         Owner:
         = task.owner.email
     = task.description
