@@ -38,12 +38,12 @@ authorization do
 		end
 
 		has_permission_on :projects, :to => [:index]
-		has_permission_on :projects, :to => [:read, :show] do
+		has_permission_on :projects, :to => [:read, :edit, :update, :show, :save] do
 			if_attribute :company_id => is { user.company_id }
 		end
 
 		has_permission_on :tasks, :to => [:index, :create, :new]
-		has_permission_on :tasks, :to => [:read, :edit, :update, :show, :save, :destroy] do   # @todo: can users create tasks??
+		has_permission_on :tasks, :to => [:read, :edit, :update, :show, :save] do
 			if_attribute :project => { :company_id => is { user.company_id } }
 		end
 
