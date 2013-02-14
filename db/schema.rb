@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125013027) do
+ActiveRecord::Schema.define(:version => 20130214052015) do
 
   create_table "comments", :force => true do |t|
     t.integer  "task_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130125013027) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "active"
   end
 
   create_table "projects", :force => true do |t|

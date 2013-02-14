@@ -13,8 +13,10 @@
           %h3 New Company
           .control-group
             .control-label= f.label :name
-            .controls
-              = f.text_field :name
+            .controls= f.text_field :name
+          .control-group
+            .control-label= f.label :active
+            .controls= f.check_box :active
           .control-group
             .controls
               = f.submit 'Save', :class => 'btn btn-primary'

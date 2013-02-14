@@ -1,6 +1,7 @@
 %h1 My Companies
 
-= render :partial => 'companies/company', :collection => @companies
+%table
+  = render :partial => 'companies/company', :collection => @companies
 
 %br
 - if permitted_to? :create, :companies
