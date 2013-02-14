@@ -36,7 +36,7 @@
           .control-group
             .control-label= f.label :owner
             .controls
-              = f.collection_select :owner_id, User.where('company_id = ?', @task.project.company_id), :id, :email
+              = f.collection_select :owner_id, User.where('company_id = ?', @task.project.company_id), :id, :real_name
           .control-group
             .controls
               = f.submit 'Save', :class => 'btn btn-primary'

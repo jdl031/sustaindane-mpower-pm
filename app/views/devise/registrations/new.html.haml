@@ -3,6 +3,9 @@
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
     = devise_error_messages!
     .control-group
+      .control-label= f.label :real_name
+      .controls= f.text_field :real_name
+    .control-group
       .control-label= f.label :email
       .controls= f.email_field :email
     /.control-group

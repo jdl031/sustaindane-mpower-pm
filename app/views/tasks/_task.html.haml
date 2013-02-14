@@ -9,7 +9,7 @@
     .media-heading
       %small.media-heading
         by
-        = task.creator.email
+        = task.creator.real_name
         due
         = task.due ? task.due.strftime('%A, %B %d %Y') : ''
       %h4.media-heading
@@ -20,6 +20,6 @@
           %span.label.label-important Overdue
       %small.media-heading
         Owner:
-        = task.owner.email
+        = task.owner.real_name
     = task.description
 %hr

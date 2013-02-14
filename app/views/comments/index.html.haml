@@ -12,7 +12,7 @@
   - @comments.each do |comment|
     %tr
       %td= comment.task.title
-      %td= comment.user.email
+      %td= comment.user.real_name
       %td= comment.comment
       %td= link_to 'Show', comment
       - if permitted_to? :update, comment

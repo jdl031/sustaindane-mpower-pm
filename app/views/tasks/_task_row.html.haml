@@ -14,6 +14,6 @@
             %span.label.label-important Overdue
         %small
           by
-          = task.creator.email
+          = task.creator.real_name
           due 
           = task.due ? task.due.strftime('%A, %B %d %Y') : ''

@@ -34,7 +34,7 @@
                 %ul.nav
                   %li= image_tag avatar_url(current_user, 40)
                   %li &nbsp;&nbsp;
-                  %li.navbar-text= current_user.email
+                  %li.navbar-text= current_user.real_name
                   %li= link_to('Sign Out', destroy_user_session_path, :method => :delete)
               - else
                 = form_tag user_session_path, :class => 'form-inline' do

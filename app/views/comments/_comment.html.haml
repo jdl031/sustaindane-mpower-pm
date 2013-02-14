@@ -8,6 +8,6 @@
       - if permitted_to? :destroy, comment
         = link_to 'Delete', comment, {:method => :delete, :class => 'btn'}
     .media-heading
-      %small= comment.user.email
+      %small= comment.user.real_name
       %small= comment.created_at ? comment.created_at.strftime('%A, %B %d %Y, %l:%M %P') : ''
     = comment.comment
