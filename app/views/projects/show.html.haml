@@ -17,11 +17,11 @@
   .span7
     %ul.nav.nav-tabs
       - if params[:complete]
-        %li= link_to 'Incomplete', @project
-        %li.active= link_to 'Complete', project_path(@project, :complete=>1)
+        %li= link_to 'Incomplete', {}
+        %li.active= link_to 'Complete', {:complete=>1}
       - else
-        %li.active= link_to 'Incomplete', @project
-        %li= link_to 'Complete', project_path(@project, :complete=>1)
+        %li.active= link_to 'Incomplete', {}
+        %li= link_to 'Complete', {:complete=>1}
     %table.table-striped
       = render :partial => 'tasks/task_row', :as => :task, :collection => @project.tasks.where(:complete=>params[:complete]=='1').order('date(due) asc')
     .row
