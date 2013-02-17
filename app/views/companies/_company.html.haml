@@ -1,5 +1,5 @@
 %tr
-  %td
+  %td.span7
     - if permitted_to? :update, company
       .btn-group.pull-right
         - if permitted_to? :update, company
@@ -8,3 +8,14 @@
           = link_to 'Delete', company, {:method => :delete, :class => 'btn'}
     = check_box :active, "post", {:disabled=>true, :checked=>company.active?}
     = link_to company.name, company
+    %br
+    %small
+      = company.projects.length
+      Projects:
+      %text{:style=>'color: green;'}
+        = company.projects.length - company.projects.where('goal_date < datetime()').length
+        Active, 
+      %text{:style=>'color: red;'}
+        = company.projects.where('goal_date < datetime()').length
+        Overdue
+      /tasks overview?
