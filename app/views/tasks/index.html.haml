@@ -2,11 +2,11 @@
 
 %ul.nav.nav-tabs
   - if params[:complete]
-    %li= link_to 'Incomplete', {}
-    %li.active= link_to 'Complete', {:complete=>1}
+    %li= link_to 'Incomplete (' + @incomplete.to_s + ')', {}
+    %li.active= link_to 'Complete (' + @complete.to_s + ')', {:complete=>1}
   - else
-    %li.active= link_to 'Incomplete', {}
-    %li= link_to 'Complete', {:complete=>1}
+    %li.active= link_to 'Incomplete (' + @incomplete.to_s + ')', {}
+    %li= link_to 'Complete (' + @complete.to_s + ')', {:complete=>1}
 - @tasks.map do |project,tasks|
   .row
     .span7

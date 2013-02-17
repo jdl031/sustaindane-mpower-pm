@@ -4,10 +4,14 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(:complete=>params[:complete]=='1').where('owner_id = ?', current_user.id).group('project_id, id').order('complete asc, due asc')
+    @tasks = Task.where('owner_id = ?', current_user.id).group('project_id, id').order('complete asc, due asc')
     hash = {}
+    @complete = 0
+    @incomplete = 0
     @tasks.each do |task|
-      hash[task.project] ? hash[task.project] << task : hash[task.project] = [task]
+      hash[task.project] ? hash[task.project] << task : hash[task.project] = [task] if task.complete==(params[:complete]=='1')
+      @complete += 1 if task.complete? 
+      @incomplete += 1 if not task.complete?
     end
     @tasks = hash
 
