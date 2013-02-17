@@ -13,7 +13,6 @@
           - elsif task.due < Date.today
             %span.label.label-important Overdue
         %small
-          by
-          = task.creator.real_name
+          = task.owner.real_name
           due 
           = task.due ? task.due.strftime('%A, %B %d %Y') : ''
