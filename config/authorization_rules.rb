@@ -4,7 +4,7 @@ authorization do
 		has_permission_on :projects, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
 		has_permission_on :tasks, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
 		has_permission_on :comments, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
-		has_permission_on :registrations, :to => [:new, :create]
+		has_permission_on :registrations, :to => [:new, :create, :edit]
 	end
 
 	role :company_admin do
@@ -28,7 +28,7 @@ authorization do
 			if_attribute :task => { :project => { :company_id => is { user.company_id } } }
 		end
 
-		has_permission_on :registrations, :to => [:new, :create]
+		has_permission_on :registrations, :to => [:new, :create, :edit]
 	end
 
 	role :user do
@@ -51,5 +51,7 @@ authorization do
 		has_permission_on :comments, :to => [:read, :edit, :update, :show, :save, :destroy] do
 			if_attribute :task => { :project => { :company_id => is { user.company_id } } }
 		end
+
+		has_permission_on :registrations, :to => [:edit, :update]
 	end
 end
