@@ -2,6 +2,9 @@
   %td
     - if permitted_to? :update, company
       .btn-group.pull-right
-        = link_to 'Edit', edit_company_path(company), :class => 'btn'
+        - if permitted_to? :update, company
+          = link_to 'Edit', edit_company_path(company), :class => 'btn'
+        - if permitted_to? :destroy, company
+          = link_to 'Delete', company, {:method => :delete, :class => 'btn'}
     = check_box :active, "post", {:disabled=>true, :checked=>company.active?}
     = link_to company.name, company
