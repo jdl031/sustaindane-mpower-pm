@@ -15,5 +15,7 @@
     .progress
       .bar{ :style => "width: #{project.completion * 100.0}%;" }
         = "#{(project.completion * 100.0).to_i}%"
+    .media-heading
+      = project.description
   %hr
   

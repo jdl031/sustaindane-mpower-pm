@@ -17,6 +17,10 @@
           .controls
             = f.text_field :name
         .control-group
+          .control-label= f.label :description
+          .controls
+            = f.text_field :description
+        .control-group
           .control-label= f.label :goal_date
           .controls
             .input-append.date{'date-data-format'=>'mm-dd-yyyy', :id=>'datepicker'}

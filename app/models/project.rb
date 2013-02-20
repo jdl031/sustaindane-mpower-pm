@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :company
-  attr_accessible :name, :company_id, :goal_date
+  attr_accessible :name, :company_id, :goal_date, :description
 
   has_many :tasks
 
