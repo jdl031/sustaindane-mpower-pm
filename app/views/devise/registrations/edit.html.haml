@@ -10,6 +10,9 @@
       .control-label= f.label :title
       .controls= f.text_field :title
     .control-group
+      .control-label= f.label :department
+      .controls= f.collection_select :department_id, Department.all, :id, :name
+    .control-group
       .control-label= f.label :email
       .controls= f.email_field :email
     .control-group

@@ -9,4 +9,8 @@
   Role.find_or_create_by_name role
 end
 
+['Human Resources', 'IT', 'Logistics'].each do |department|
+  Department.find_or_create_by_name department
+end
+
 # @todo: insert default admin user (TOTALLY INSECURE!)

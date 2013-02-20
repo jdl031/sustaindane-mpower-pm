@@ -6,11 +6,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :company_id, :role_id, :real_name, :title
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :company_id, :role_id, :real_name, :title, :department_id
   # attr_accessible :title, :body
 
   belongs_to :company
   belongs_to :role
+  belongs_to :department
   before_create :set_default_role
 
   def role_symbols

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220062350) do
+ActiveRecord::Schema.define(:version => 20130220063957) do
 
   create_table "comments", :force => true do |t|
     t.integer  "task_id"
@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(:version => 20130220062350) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "active"
+  end
+
+  create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "projects", :force => true do |t|
@@ -85,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20130220062350) do
     t.integer  "role_id"
     t.string   "real_name"
     t.string   "title"
+    t.integer  "department_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
