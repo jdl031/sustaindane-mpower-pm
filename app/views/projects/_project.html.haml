@@ -8,7 +8,7 @@
     .media-heading
       %h4.media-heading
         = link_to project.name, project
-        - if project.end_date && project.end_date < Date.today
+        - if project.end_date != nil && project.end_date < Date.today
           %span.label.label-important Overdue
     .media-heading
       %small= project.start_date ? project.start_date.strftime('%A, %B %d %Y') : ''
