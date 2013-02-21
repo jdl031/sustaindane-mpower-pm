@@ -21,10 +21,17 @@
           .controls
             = f.text_field :description
         .control-group
-          .control-label= f.label :goal_date
+          .control-label= f.label :start_date
           .controls
-            .input-append.date{'date-data-format'=>'mm-dd-yyyy', :id=>'datepicker'}
-              = f.text_field :goal_date, {:class=>'span2'}
+            .input-append.date{'date-data-format'=>'mm-dd-yyyy', :class=>'datepicker'}
+              = f.text_field :start_date, {:class=>'span2'}
+              %span.add-on
+                %i.icon-calendar
+        .control-group
+          .control-label= f.label :end_date
+          .controls
+            .input-append.date{'date-data-format'=>'mm-dd-yyyy', :class=>'datepicker'}
+              = f.text_field :end_date, {:class=>'span2'}
               %span.add-on
                 %i.icon-calendar
         .control-group

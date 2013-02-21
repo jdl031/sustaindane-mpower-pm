@@ -25,7 +25,7 @@
           .control-group
             .control-label= f.label :due
             .controls
-              .input-append.date{'date-data-format'=>'mm-dd-yyyy', :id=>'datepicker'}
+              .input-append.date{'date-data-format'=>'mm-dd-yyyy', :class=>'datepicker'}
                 = f.text_field :due, {:class=>'span2'}
                 %span.add-on
                   %i.icon-calendar

@@ -68,6 +68,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
+    params[:task][:due] = DateTime.strptime(params[:task][:due], '%m/%d/%Y').strftime('%Y/%m/%d')
     @task = Task.find(params[:id])
 
     respond_to do |format|

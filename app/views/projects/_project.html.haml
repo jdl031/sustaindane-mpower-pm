@@ -8,10 +8,12 @@
     .media-heading
       %h4.media-heading
         = link_to project.name, project
-        - if project.goal_date && project.goal_date < Date.today
+        - if project.end_date && project.end_date < Date.today
           %span.label.label-important Overdue
     .media-heading
-      %small= project.goal_date ? project.goal_date.strftime('%A, %B %d %Y') : ''
+      %small= project.start_date ? project.start_date.strftime('%A, %B %d %Y') : ''
+      \-
+      %small= project.end_date ? project.end_date.strftime('%A, %B %d %Y') : ''
     .progress
       .bar{ :style => "width: #{project.completion * 100.0}%;" }
         = "#{(project.completion * 100.0).to_i}%"

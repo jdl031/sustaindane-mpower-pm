@@ -16,7 +16,7 @@
         = link_to task.title, task
         - if task.complete
           %span.label.label-success Complete
-        - elsif task.due < Date.today
+        - elsif task.due && task.due < Date.today
           %span.label.label-important Overdue
       %small.media-heading
         Owner:

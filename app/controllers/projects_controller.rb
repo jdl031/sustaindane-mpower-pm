@@ -42,7 +42,8 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    params[:project][:goal_date] = DateTime.strptime(params[:project][:goal_date], '%m/%d/%Y').strftime('%Y/%m/%d')
+    params[:project][:start_date] = DateTime.strptime(params[:project][:start_date], '%m/%d/%Y').strftime('%Y/%m/%d')
+    params[:project][:end_date] = DateTime.strptime(params[:project][:end_date], '%m/%d/%Y').strftime('%Y/%m/%d')
     @project = Project.new(params[:project])
 
     respond_to do |format|
@@ -59,6 +60,8 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def update
+    params[:project][:start_date] = DateTime.strptime(params[:project][:start_date], '%m/%d/%Y').strftime('%Y/%m/%d')
+    params[:project][:end_date] = DateTime.strptime(params[:project][:end_date], '%m/%d/%Y').strftime('%Y/%m/%d')
     @project = Project.find(params[:id])
 
     respond_to do |format|

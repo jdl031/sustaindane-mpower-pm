@@ -13,9 +13,9 @@
       = company.projects.length
       Projects:
       %text{:style=>'color: green;'}
-        = company.projects.length - company.projects.where('goal_date < ?', Date.today).length
+        = company.projects.length - company.projects.where('end_date < ?', Date.today).length
         Active, 
       %text{:style=>'color: red;'}
-        = company.projects.where('goal_date < ?', Date.today).length
+        = company.projects.where('end_date < ?', Date.today).length
         Overdue
       /tasks overview?

@@ -15,7 +15,7 @@
 
 .row
   .span7
-    = render :partial => 'projects/project', :collection => @company.projects.order('goal_date asc')
+    = render :partial => 'projects/project', :collection => @company.projects.order('end_date asc')
     .row
       .span6
         - if permitted_to? :create, :projects
