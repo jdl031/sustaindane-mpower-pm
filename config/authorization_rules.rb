@@ -48,12 +48,10 @@ authorization do
 		end
 
 		has_permission_on :comments, :to => [:index, :create, :new]
-		has_permission_on :comments, :to => [:read, :edit, :update, :show, :save, :destroy] do
+		has_permission_on :comments, :to => [:read, :edit, :update, :show, :save, :destroy, :download] do
 			if_attribute :task => { :project => { :company_id => is { user.company_id } } }
 		end
 
 		has_permission_on :registrations, :to => [:edit, :update]
-
-		has_permission_on :comments, :to => [:download]
 	end
 end
