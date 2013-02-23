@@ -33,6 +33,10 @@ GEM
     bootstrap-datepicker-rails (0.6.39)
       railties (>= 3.0)
     builder (3.0.4)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -77,6 +81,12 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     orm_adapter (0.4.0)
+    paperclip (3.4.1)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
     pg (0.14.1)
     polyglot (0.3.3)
     rabl (0.7.9)
@@ -153,6 +163,7 @@ DEPENDENCIES
   hpricot
   jquery-rails
   less-rails
+  paperclip (~> 3.0)
   pg
   rabl
   rails (= 3.2.9)
