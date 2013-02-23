@@ -11,3 +11,10 @@
       %small= comment.user.real_name
       %small= comment.created_at ? comment.created_at.strftime('%A, %B %d %Y, %l:%M %P') : ''
     = comment.comment
+    - if comment.attachment
+      .media-heading
+        %small
+          Attachment:
+          = link_to comment.attachment_file_name, comment.attachment.url
+          = comment.attachment_file_size
+          bytes

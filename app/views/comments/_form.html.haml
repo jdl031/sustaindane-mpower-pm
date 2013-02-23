@@ -17,5 +17,7 @@
         .control-group
           = f.text_area :comment, { :size=>'100x4', :style=>'width: 97%;' }
         .control-group
+          = f.file_field :attachment
+        .control-group
           = f.submit 'Comment', :class => 'btn'
           = f.submit 'Complete', :class => 'btn btn-primary', :name => 'complete'
