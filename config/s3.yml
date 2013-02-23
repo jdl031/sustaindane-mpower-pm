@@ -1,0 +1,12 @@
+development:
+  access_key_id: AKIAIXH7J4H5JWUAVIUA
+  secret_access_key: 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
+  bucket: sustaindane-dev
+test:
+  access_key_id: AKIAIXH7J4H5JWUAVIUA
+  secret_access_key: 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
+  bucket: sustaindane-test
+production:
+  access_key_id: AKIAIXH7J4H5JWUAVIUA
+  secret_access_key: 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
+  bucket: sustaindane
