@@ -2,6 +2,7 @@ SustaindaneMpowerPm::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => :registrations }
 
   resources :comments
+  match 'comments/:id/attachment' => 'comments#download', :as => 'download_comment_attachment'
 
 
   resources :tasks

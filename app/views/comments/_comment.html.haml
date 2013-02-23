@@ -15,6 +15,6 @@
       .media-heading
         %small
           Attachment:
-          = link_to comment.attachment_file_name, comment.attachment.url
+          = link_to comment.attachment_file_name, download_comment_attachment_path(comment)
           = comment.attachment_file_size
           bytes

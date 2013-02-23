@@ -87,4 +87,8 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def download
+    redirect_to @comment.attachment.expiring_url(10)
+  end
 end

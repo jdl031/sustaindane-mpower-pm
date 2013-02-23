@@ -53,5 +53,7 @@ authorization do
 		end
 
 		has_permission_on :registrations, :to => [:edit, :update]
+
+		has_permission_on :comments, :to => [:download]
 	end
 end
