@@ -9,7 +9,19 @@
   Role.find_or_create_by_name role
 end
 
-['Human Resources', 'IT', 'Logistics'].each do |department|
+[
+	'Corporate/General Management',
+	'Marketing',
+	'HR',
+	'Facilities',
+	'Finance',
+	'Product Development',
+	'Sales',
+	'Customer Services',
+	'Education/Training',
+	'IT',
+	'Other',
+].each do |department|
   Department.find_or_create_by_name department
 end
 
