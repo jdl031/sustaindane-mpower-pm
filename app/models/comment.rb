@@ -1,4 +1,7 @@
 class Comment < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
+
   belongs_to :task
   belongs_to :user
   attr_accessible :task_id, :user_id, :comment, :attachment

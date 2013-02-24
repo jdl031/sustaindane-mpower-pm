@@ -1,0 +1,7 @@
+.media
+  .pull-left= image_tag avatar_url(activity.owner)
+  .media-body.well.well-small
+    .media-heading
+      %small= activity.owner.real_name
+      %small= activity.created_at ? activity.created_at.strftime('%A, %B %d %Y, %l:%M %P') : ''
+    = yield

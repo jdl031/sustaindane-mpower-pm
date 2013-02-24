@@ -16,6 +16,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1.json
   def show
     @company = Company.find(params[:id])
+    @activities = PublicActivity::Activity.order('created_at desc')
 
     respond_to do |format|
       format.html # show.html.erb

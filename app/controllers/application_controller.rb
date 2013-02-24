@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include PublicActivity::StoreController
+  
   protect_from_forgery
   before_filter { |c| Authorization.current_user = c.current_user }
 
