@@ -1,6 +1,6 @@
 authorization do
 	role :admin do
-		has_permission_on :companies, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
+		has_permission_on :companies, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update, :calendar]
 		has_permission_on :projects, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
 		has_permission_on :tasks, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
 		has_permission_on :comments, :to => [:index, :create, :new, :read, :edit, :show, :save, :destroy, :update]
@@ -9,7 +9,7 @@ authorization do
 
 	role :company_admin do
 		has_permission_on :companies, :to => [:index]
-		has_permission_on :companies, :to => [:read, :show] do
+		has_permission_on :companies, :to => [:read, :show, :calendar] do
 			if_attribute :id => is { user.company_id }
 		end
 
@@ -33,7 +33,7 @@ authorization do
 
 	role :user do
 		has_permission_on :companies, :to => [:index]
-		has_permission_on :companies, :to => [:read, :show] do
+		has_permission_on :companies, :to => [:read, :show, :calendar] do
 			if_attribute :id => is { user.company_id }
 		end
 

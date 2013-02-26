@@ -71,6 +71,7 @@ GEM
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
     i18n (0.6.1)
+    icalendar (1.2.2)
     journey (1.0.4)
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
@@ -178,6 +179,7 @@ DEPENDENCIES
   devise
   haml-rails
   hpricot
+  icalendar
   jquery-rails
   less-rails
   paperclip (~> 3.0)

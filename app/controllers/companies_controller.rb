@@ -83,4 +83,11 @@ class CompaniesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def calendar
+    @calendar = Company.find(params[:id]).ical
+    respond_to do |format|
+      format.ics
+    end
+  end
 end
