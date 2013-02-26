@@ -54,4 +54,8 @@ authorization do
 
 		has_permission_on :registrations, :to => [:edit, :update]
 	end
+
+	role :guest do
+		has_permission_on :companies, :to => [:calendar]
+	end
 end

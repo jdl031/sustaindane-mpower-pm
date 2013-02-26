@@ -14,7 +14,7 @@
           = link_to 'Edit', edit_company_path(@company), :class => 'btn'
       %h1= @company.name
       .icon-calendar
-      %small= link_to 'Download iCal', company_calendar_path(@company, :format=>:ics)
+      %small= link_to 'Download iCal', company_calendar_path(@company, :format=>:ics, :token=>current_user.token)
 
     .row
       .span7

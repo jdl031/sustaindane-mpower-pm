@@ -18,6 +18,16 @@ class User < ActiveRecord::Base
     [role.name.to_sym]
   end
 
+  def token
+    if self.access_token == nil
+      begin
+        self.access_token = SecureRandom.hex
+      end while self.class.exists?(access_token: access_token)
+      self.save
+    end
+    self.access_token
+  end
+
   private
   def set_default_role
     self.role ||= Role.find_by_name('user')
