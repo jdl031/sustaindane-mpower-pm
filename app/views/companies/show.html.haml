@@ -15,7 +15,7 @@
       %h1= @company.name
       .icon-calendar
       %small= link_to 'Download iCal', company_calendar_path(@company, :format=>:ics, :token=>current_user.token)
-
+      %small= link_to "Subscribe on Google Calendar", "http://www.google.com/calendar/render?cid=http://sustain-dane.herokuapp.com/companies/#{@company.id}/calendar/#{current_user.token}.ics"
     .row
       .span7
         = render :partial => 'projects/project', :collection => @company.projects.order('end_date asc')
