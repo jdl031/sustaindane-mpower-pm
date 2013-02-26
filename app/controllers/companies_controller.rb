@@ -85,6 +85,7 @@ class CompaniesController < ApplicationController
   end
 
   def calendar
+    headers['Content-Type'] = 'text/calendar'
     user = User.find_by_access_token(params[:token])
     if (current_user == nil && (params[:token] == nil || user == nil)) || user.company_id != params[:id].to_i
       flash[:error] = "unauthorized access"
