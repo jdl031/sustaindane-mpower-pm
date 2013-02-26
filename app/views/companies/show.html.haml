@@ -13,6 +13,8 @@
         .btn-group.pull-right
           = link_to 'Edit', edit_company_path(@company), :class => 'btn'
       %h1= @company.name
+      .icon-calendar
+      %small= link_to 'Download iCal', company_calendar_path(@company, :format=>:ics)
 
     .row
       .span7
