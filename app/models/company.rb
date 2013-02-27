@@ -5,7 +5,7 @@ class Company < ActiveRecord::Base
 
   def ical
     calendar = Icalendar::Calendar.new
-    puts calendar
+    calendar.custom_property('X-WR-CALNAME', self.name)
     self.projects.each do |project|
       e=Icalendar::Event.new
       e.uid='company:'+self.id.to_s+'project:'+project.id.to_s
