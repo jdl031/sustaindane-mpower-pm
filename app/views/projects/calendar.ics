@@ -1,0 +1,2 @@
+<% @calendar.publish %>
+<%= @calendar.to_ical %>

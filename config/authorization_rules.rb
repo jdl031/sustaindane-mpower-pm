@@ -38,7 +38,7 @@ authorization do
 		end
 
 		has_permission_on :projects, :to => [:index]
-		has_permission_on :projects, :to => [:read, :edit, :update, :show, :save] do
+		has_permission_on :projects, :to => [:read, :edit, :update, :show, :save, :calendar] do
 			if_attribute :company_id => is { user.company_id }
 		end
 
@@ -57,5 +57,6 @@ authorization do
 
 	role :guest do
 		has_permission_on :companies, :to => [:calendar]
+		has_permission_on :projects, :to => [:calendar]
 	end
 end

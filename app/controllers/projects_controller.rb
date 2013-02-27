@@ -86,4 +86,18 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def calendar
+    headers['Content-Type'] = 'text/calendar'
+    project = Project.find(params[:id])
+    user = User.find_by_access_token(params[:token])
+    if (current_user == nil && (params[:token] == nil || user == nil)) || user.company_id != project.company.id
+      flash[:error] = "unauthorized access"
+      head :unauthorized
+    end
+    @calendar = Project.find(params[:id]).ical
+    respond_to do |format|
+      format.ics
+    end
+  end
 end

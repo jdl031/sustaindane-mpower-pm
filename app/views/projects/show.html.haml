@@ -11,6 +11,9 @@
 
 .row
   .span7
+    .icon-calendar
+    %small= link_to 'Download iCal', project_calendar_path(@project, :format=>:ics, :token=>current_user.token)
+    %small= link_to "Subscribe on Google Calendar", "http://www.google.com/calendar/render?cid=http://sustain-dane.herokuapp.com/projects/#{@project.id}/calendar/#{current_user.token}.ics"
     =render :partial => 'projects/project', :object => @project
 
 .row

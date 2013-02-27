@@ -9,6 +9,7 @@ SustaindaneMpowerPm::Application.routes.draw do
 
 
   resources :projects
+  match 'projects/:id/calendar/:token' => 'projects#calendar', :as => 'project_calendar'
 
 
   resources :companies
