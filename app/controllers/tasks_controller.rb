@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  filter_resource_access :collection => [:calendar]
+  filter_resource_access :additional_collection => :calendar
 
   # GET /tasks
   # GET /tasks.json
