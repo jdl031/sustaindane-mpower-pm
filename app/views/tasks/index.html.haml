@@ -1,4 +1,7 @@
 %h1 My Tasks
+.icon-calendar
+%small= link_to 'Download iCal', tasks_calendar_path(:format=>:ics, :token=>current_user.token)
+%small= link_to "Subscribe on Google Calendar", "http://www.google.com/calendar/render?cid=http://"+request.host+tasks_calendar_path(:format=>:ics, :token=>current_user.token)
 
 %ul.nav.nav-tabs
   - if params[:complete]

@@ -6,14 +6,15 @@ SustaindaneMpowerPm::Application.routes.draw do
 
 
   resources :tasks
+  match 'calendars/:token/tasks' => 'tasks#calendar', :as => 'tasks_calendar'
 
 
   resources :projects
-  match 'projects/:id/calendar/:token' => 'projects#calendar', :as => 'project_calendar'
+  match 'calendars/:token/projects/:id' => 'projects#calendar', :as => 'project_calendar'
 
 
   resources :companies
-  match 'companies/:id/calendar/:token' => 'companies#calendar', :as => 'company_calendar'
+  match 'calendars/:token/companies/:id' => 'companies#calendar', :as => 'company_calendar'
 
 
   # The priority is based upon order of creation:

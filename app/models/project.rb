@@ -15,15 +15,18 @@ class Project < ActiveRecord::Base
     calendar = Icalendar::Calendar.new
     calendar.custom_property('X-WR-CALNAME', self.name)
     self.tasks.each do |task|
-      e=Icalendar::Event.new
-      e.uid='company:'+self.company.id.to_s+':project:'+self.id.to_s+':task:'+task.id.to_s
-      e.dtstart=DateTime.civil(task.due.year, task.due.month, task.due.day, task.due.hour, task.due.min)
-      e.dtend=DateTime.civil(task.due.year, task.due.month, task.due.day, task.due.hour, task.due.min)
-      e.summary=task.title
-      e.created=DateTime.civil(task.created_at.year, task.created_at.month, task.created_at.day, task.created_at.hour, task.created_at.min)
-      e.last_modified=DateTime.civil(task.updated_at.year, task.updated_at.month, task.updated_at.day, task.updated_at.hour, task.updated_at.min)
-      calendar.add e
+      calendar.add task.ical_event
     end
     calendar
+  end
+
+  def ical_event
+    e=Icalendar::Event.new
+    e.uid='company:'+self.company.id.to_s+'project:'+self.id.to_s
+    e.dtstart=DateTime.civil(self.start_date.year, self.start_date.month, self.start_date.day, self.start_date.hour, self.start_date.min)
+    e.dtend=DateTime.civil(self.end_date.year, self.end_date.month, self.end_date.day, self.end_date.hour, self.end_date.min)
+    e.summary=self.name
+    e.created=DateTime.civil(self.created_at.year, self.created_at.month, self.created_at.day, self.created_at.hour, self.created_at.min)
+    e.last_modified=DateTime.civil(self.updated_at.year, self.updated_at.month, self.updated_at.day, self.updated_at.hour, self.updated_at.min)
   end
 end

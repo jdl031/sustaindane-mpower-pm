@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  filter_resource_access
+  filter_resource_access :collection => [:calendar]
 
   # GET /tasks
   # GET /tasks.json
@@ -91,6 +91,23 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tasks_url }
       format.json { head :no_content }
+    end
+  end
+
+  def calendar
+    headers['Content-Type'] = 'text/calendar'
+    user = User.find_by_access_token(params[:token])
+    if current_user == nil && (params[:token] == nil || user == nil)
+      flash[:error] = "unauthorized access"
+      head :unauthorized
+    end
+    tasks = Task.where('owner_id=?', user.id)
+    @calendar = Icalendar::Calendar.new
+    tasks.each do |task|
+      @calendar.add task.ical_event
+    end
+    respond_to do |format|
+      format.ics
     end
   end
 end
