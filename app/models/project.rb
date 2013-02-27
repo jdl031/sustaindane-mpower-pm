@@ -28,5 +28,6 @@ class Project < ActiveRecord::Base
     e.summary=self.name
     e.created=DateTime.civil(self.created_at.year, self.created_at.month, self.created_at.day, self.created_at.hour, self.created_at.min)
     e.last_modified=DateTime.civil(self.updated_at.year, self.updated_at.month, self.updated_at.day, self.updated_at.hour, self.updated_at.min)
+    e
   end
 end
