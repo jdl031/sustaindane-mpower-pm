@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  include PublicActivity::Common
   filter_resource_access
 
   # GET /comments
@@ -51,6 +52,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.comment.length == 0 || @comment.save
+        PublicActivity::Activity.create key: 'comment.create', trackable: @comment, company_id: @comment.task.project.company_id, owner: current_user
         format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
@@ -67,6 +69,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
+        PublicActivity::Activity.create key: 'comment.update', trackable: @comment, company_id: @comment.task.project.company_id, owner: current_user
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
       else

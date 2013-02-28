@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked
 
   belongs_to :company
   attr_accessible :name, :company_id, :start_date, :end_date, :description

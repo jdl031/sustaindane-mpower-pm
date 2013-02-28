@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked
 
   belongs_to :task
   belongs_to :user

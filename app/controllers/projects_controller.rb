@@ -48,6 +48,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        PublicActivity::Activity.create key: 'project.create', trackable: @project, company_id: @project.company_id, owner: current_user
         format.html { redirect_to :back, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
@@ -66,6 +67,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
+        PublicActivity::Activity.create key: 'project.update', trackable: @project, company_id: @project.company_id, owner: current_user
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
