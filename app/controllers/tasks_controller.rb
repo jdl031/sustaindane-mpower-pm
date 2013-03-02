@@ -105,6 +105,7 @@ class TasksController < ApplicationController
     end
     tasks = Task.where('owner_id=?', user.id)
     @calendar = Icalendar::Calendar.new
+    @calendar.custom_property('X-WR-CALNAME', current_user.company.name + ' - My Tasks')
     tasks.each do |task|
       @calendar.add task.ical_event
     end
