@@ -1,4 +1,10 @@
 .row
-  = link_to user.real_name, edit_user_path(user)
-  = user.email
-  = user.role.name
+  .span
+    = link_to user.real_name, edit_user_path(user)
+    = user.email
+    - if user.role.name == 'admin'
+      %span.label.label-success= user.role.name
+    - if user.role.name == 'company_admin'
+      %span.label.label-info= user.role.name
+    - if user.role.name == 'user'
+      %span.label= user.role.name
