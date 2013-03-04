@@ -1,0 +1,9 @@
+= link_to 'Register New User', new_user_registration_path
+- @users.map do |company,users|
+  .row
+    .span7
+      %h2= link_to company ? company.name : '', company
+  .row
+    .span7
+      %table
+        = render :partial => 'users/user_row', :as => :user, :collection => users

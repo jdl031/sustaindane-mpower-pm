@@ -1,0 +1,21 @@
+.form-horizontal
+  %h2 Edit #{@user.real_name}
+  = form_for(@user) do |f|
+    .control-group
+      .control-label= f.label :real_name
+      .controls= f.text_field :real_name
+    .control-group
+      .control-label= f.label :email
+      .controls= f.email_field :email
+    - if current_user.role.name == 'admin'
+      .control-group
+        .control-label= f.label :role
+        .controls= f.collection_select :role_id, Role.all, :id, :name, {:selected => Role.find_by_name('user').id.to_i}
+      .control-group
+        .control-label= f.label :company
+        .controls= f.collection_select :company_id, Company.all, :id, :name
+    - if current_user.role.name == 'company_admin'
+      .control-group
+        .control-label= f.label :role
+        .controls= f.collection_select :role_id, Role.where("name != 'admin'"), :id, :name, {:selected => Role.find_by_name('user').id.to_i}
+    .controls= f.submit "Save"

@@ -1,5 +1,8 @@
 SustaindaneMpowerPm::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => :registrations }
+  match 'users' => 'users#index'
+  match 'users/:id/edit' => 'users#edit', :as => 'edit_user'
+  match 'users/:id' => 'users#update', :as => 'user', :method => :put
 
   resources :comments
   match 'comments/:id/attachment' => 'comments#download', :as => 'download_comment_attachment'
