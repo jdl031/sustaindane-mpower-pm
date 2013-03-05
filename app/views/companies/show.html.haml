@@ -9,7 +9,7 @@
 .row
   .span7
     .row
-      .span
+      .span7
         - if permitted_to? :update, @company
           .btn-group.pull-right
             = link_to 'Edit', edit_company_path(@company), :class => 'btn'
