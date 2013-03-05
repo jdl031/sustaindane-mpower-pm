@@ -8,9 +8,7 @@
       .media-body
         .media-heading
           %strong= link_to task.title, task
-          - if task.complete
-            %span.label.label-success Complete
-          - elsif task.due < Date.today
+          - if not task.complete && task.due < Date.today
             %span.label.label-important Overdue
         %small
           = task.owner.real_name
