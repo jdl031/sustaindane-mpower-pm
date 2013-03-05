@@ -9,13 +9,14 @@
 .row
   .span7
     .row
-      - if permitted_to? :update, @company
-        .btn-group.pull-right
-          = link_to 'Edit', edit_company_path(@company), :class => 'btn'
-      %h1= @company.name
-      .icon-calendar
-      %small= link_to 'Download iCal', company_calendar_path(@company, :format=>:ics, :token=>current_user.token)
-      %small= link_to "Subscribe on Google Calendar", "http://www.google.com/calendar/render?cid=http://"+request.host+company_calendar_path(@company, :format=>:ics, :token=>current_user.token)
+      .span
+        - if permitted_to? :update, @company
+          .btn-group.pull-right
+            = link_to 'Edit', edit_company_path(@company), :class => 'btn'
+        %h1= @company.name
+        .icon-calendar
+        %small= link_to 'Download iCal', company_calendar_path(@company, :format=>:ics, :token=>current_user.token)
+        %small= link_to "Subscribe on Google Calendar", "http://www.google.com/calendar/render?cid=http://"+request.host+company_calendar_path(@company, :format=>:ics, :token=>current_user.token)
     .row
       .span7
         = render :partial => 'projects/project', :collection => @company.projects.order('end_date asc')
