@@ -14,12 +14,18 @@
 
 .row
   .span7
-    = render :partial => 'tasks/task', :object => @task
-
-.row
-  .span7
-    = render :partial => 'comments/comment', :collection => @task.comments.order('created_at asc')
     .row
-      .span6
-        = render :partial => 'comments/form', :locals => { :@comment => Comment.new(:task_id=>@task.id, :user_id=>current_user.id) }
+      .span7
+        = render :partial => 'tasks/task', :object => @task
 
+    .row
+      .span7
+        = render :partial => 'comments/comment', :collection => @task.comments.order('created_at asc')
+        .row
+          .span6
+            = render :partial => 'comments/form', :locals => { :@comment => Comment.new(:task_id=>@task.id, :user_id=>current_user.id) }
+  .span5
+    %h1 Recent Activity
+    .pull-right
+      - @activities.each do |activity|
+        .row= render_activity(activity, :layout => "layouts/activity" ) if activity.trackable && activity.owner

@@ -11,22 +11,28 @@
 
 .row
   .span7
-    .icon-calendar
-    %small= link_to 'Download iCal', project_calendar_path(@project, :format=>:ics, :token=>current_user.token)
-    %small= link_to "Subscribe on Google Calendar", "http://www.google.com/calendar/render?cid=http://"+request.host+project_calendar_path(@project, :format=>:ics, :token=>current_user.token)
-    =render :partial => 'projects/project', :object => @project
-
-.row
-  .span7
-    %ul.nav.nav-tabs
-      - if params[:complete]
-        %li= link_to 'Incomplete (' + @project.tasks.where(:complete=>false).length.to_s + ')', {}
-        %li.active= link_to 'Complete (' + @project.tasks.where(:complete=>true).length.to_s + ')', {:complete=>1}
-      - else
-        %li.active= link_to 'Incomplete (' + @project.tasks.where(:complete=>false).length.to_s + ')', {}
-        %li= link_to 'Complete (' + @project.tasks.where(:complete=>true).length.to_s + ')', {:complete=>1}
-    %table.table-striped
-      = render :partial => 'tasks/task_row', :as => :task, :collection => @project.tasks.where(:complete=>params[:complete]=='1').order('date(due) asc')
     .row
-      .span6
-        = render :partial => 'tasks/form', :locals => { :@task => Task.new(:project_id=>@project.id, :creator_id=>current_user.id,  :owner_id=>current_user.id) }
+      .span7
+        .icon-calendar
+        %small= link_to 'Download iCal', project_calendar_path(@project, :format=>:ics, :token=>current_user.token)
+        %small= link_to "Subscribe on Google Calendar", "http://www.google.com/calendar/render?cid=http://"+request.host+project_calendar_path(@project, :format=>:ics, :token=>current_user.token)
+        =render :partial => 'projects/project', :object => @project
+    .row
+      .span7
+        %ul.nav.nav-tabs
+          - if params[:complete]
+            %li= link_to 'Incomplete (' + @project.tasks.where(:complete=>false).length.to_s + ')', {}
+            %li.active= link_to 'Complete (' + @project.tasks.where(:complete=>true).length.to_s + ')', {:complete=>1}
+          - else
+            %li.active= link_to 'Incomplete (' + @project.tasks.where(:complete=>false).length.to_s + ')', {}
+            %li= link_to 'Complete (' + @project.tasks.where(:complete=>true).length.to_s + ')', {:complete=>1}
+        %table.table-striped
+          = render :partial => 'tasks/task_row', :as => :task, :collection => @project.tasks.where(:complete=>params[:complete]=='1').order('date(due) asc')
+        .row
+          .span6
+            = render :partial => 'tasks/form', :locals => { :@task => Task.new(:project_id=>@project.id, :creator_id=>current_user.id,  :owner_id=>current_user.id) }
+  .span5
+    %h1 Recent Activity
+    .pull-right
+      - @activities.each do |activity|
+        .row= render_activity(activity, :layout => "layouts/activity" ) if activity.trackable && activity.owner

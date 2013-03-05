@@ -25,6 +25,7 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   def show
     @task = Task.find(params[:id])
+    @activities = PublicActivity::Activity.order('created_at desc').where(:task_id=>@task.id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -56,7 +57,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        PublicActivity::Activity.create key: 'task.create', trackable: @task, company_id: @task.project.company_id, owner: current_user
+        PublicActivity::Activity.create key: 'task.create', trackable: @task, company_id: @task.project.company_id, project_id: @task.project_id, task_id: @task.id, owner: current_user
         format.html { redirect_to :back, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
@@ -74,7 +75,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        PublicActivity::Activity.create key: 'task.create', trackable: @task, company_id: @task.project.company_id, owner: current_user
+        PublicActivity::Activity.create key: 'task.create', trackable: @task, company_id: @task.project.company_id, project_id: @task.project_id, task_id: task.id, owner: current_user
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
