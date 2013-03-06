@@ -19,7 +19,8 @@
         %small= link_to "Subscribe on Google Calendar", "http://www.google.com/calendar/render?cid=http://"+request.host+company_calendar_path(@company, :format=>:ics, :token=>current_user.token)
     .row
       .span7
-        = render :partial => 'projects/project', :collection => @company.projects.order('end_date asc')
+        = render :partial => 'projects/project', :collection => @company.projects.order('end_date asc').page(params[:page]).per(10)
+        = paginate @company.projects.page(params[:page]).per(10)
         .row
           .span6
             - if permitted_to? :create, :projects

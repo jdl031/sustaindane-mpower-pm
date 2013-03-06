@@ -20,7 +20,8 @@
 
     .row
       .span7
-        = render :partial => 'comments/comment', :collection => @task.comments.order('created_at asc')
+        = render :partial => 'comments/comment', :collection => @task.comments.order('created_at asc').page(params[:page]).per(10)
+        = paginate @task.comments.page(params[:page]).per(10)
         .row
           .span6
             = render :partial => 'comments/form', :locals => { :@comment => Comment.new(:task_id=>@task.id, :user_id=>current_user.id) }

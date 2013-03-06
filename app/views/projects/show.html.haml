@@ -27,7 +27,8 @@
             %li.active= link_to 'Incomplete (' + @project.tasks.where(:complete=>false).length.to_s + ')', {}
             %li= link_to 'Complete (' + @project.tasks.where(:complete=>true).length.to_s + ')', {:complete=>1}
         %table.table-striped
-          = render :partial => 'tasks/task_row', :as => :task, :collection => @project.tasks.where(:complete=>params[:complete]=='1').order('date(due) asc')
+          = render :partial => 'tasks/task_row', :as => :task, :collection => @project.tasks.where(:complete=>params[:complete]=='1').order('date(due) asc').page(params[:page]).per(10)
+        = paginate @project.tasks.page(params[:page]).per(10)
         .row
           .span6
             = render :partial => 'tasks/form', :locals => { :@task => Task.new(:project_id=>@project.id, :creator_id=>current_user.id,  :owner_id=>current_user.id) }
